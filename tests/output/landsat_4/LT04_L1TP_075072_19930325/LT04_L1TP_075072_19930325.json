@@ -64,7 +64,7 @@
    ],
    "assets":{
       "blue":{
-         "href":"common_sensing/fiji/landsat_5/LT04_L1TP_075072_19930325/LT04_L1TP_075072_19930325_20170120_01_T1_sr_band1.tif",
+         "href":"common_sensing/fiji/landsat_4/LT04_L1TP_075072_19930325/LT04_L1TP_075072_19930325_20170120_01_T1_sr_band1.tif",
          "type":"image/tiff; application=geotiff; profile=cloud-optimized",
          "proj:transform":[
             30.0,
@@ -192,7 +192,7 @@
          ]
       },
       "pixel_qa":{
-         "href":"common_sensing/fiji/landsat_5/LT04_L1TP_075072_19930325/LT04_L1TP_075072_19930325_20170120_01_T1_pixel_qa.tif",
+         "href":"common_sensing/fiji/landsat_4/LT04_L1TP_075072_19930325/LT04_L1TP_075072_19930325_20170120_01_T1_pixel_qa.tif",
          "type":"image/tiff; application=geotiff; profile=cloud-optimized",
          "proj:transform":[
             30.0,
