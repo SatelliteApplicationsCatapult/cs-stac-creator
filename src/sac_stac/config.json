@@ -487,6 +487,107 @@
           }
         }
       }
+    },
+    {
+      "id": "landsat_4",
+      "title": "USGS Landsat-4 Datasets",
+      "description":"A collection of Landsat-4 datasets. Surface reflectance products ordered via ESPA and prepared by Catapult.",
+      "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/landsat_4/",
+      "formatting": {
+        "date": {
+          "regex": "(\\d{8})",
+          "format": "%Y%m%d"
+        }
+      },
+      "providers": [
+        {
+          "name": "USGS",
+          "roles": ["producer", "licensor"],
+          "url": "https://www.esa.int/"
+        },
+        {
+          "name": "Satellite Applications Catapult",
+          "roles": ["processor", "host"],
+          "url": "https://sa.catapult.org.uk/"
+        }
+      ],
+      "common_metadata": {
+        "gsd": 30,
+        "instruments": ["tm"],
+        "constellation": "landsat_4",
+        "platform": "landsat_4"
+      },
+      "extensions": {
+        "eo": {
+          "cloud_cover": 0.0,
+          "bands": [
+              {
+                "name": "sr_band1",
+                "common_name": "blue",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": -9999
+              },
+              {
+                "name": "sr_band2",
+                "common_name": "green",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": -9999
+              },
+              {
+                "name": "sr_band3",
+                "common_name": "red",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": -9999
+              },
+              {
+                "name": "sr_band4",
+                "common_name": "nir",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": -9999
+              },
+              {
+                "name": "sr_band5",
+                "common_name": "swir16",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": -9999
+              },
+              {
+                "name": "sr_band7",
+                "common_name": "swir22",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": -9999
+              },
+              {
+                "name": "bt_band6",
+                "common_name": "lwir",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": -9999
+              },
+              {
+                "name": "pixel_qa",
+                "common_name": "pixel_qa",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": -9999
+              }
+          ]
+        },
+        "product_definition": {
+          "metadata_type": "eo3",
+          "metadata": {
+            "product":{
+              "name":"landsat_4"
+            }
+          }
+        }
+      }
     }
   ]
 }
