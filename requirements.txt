@@ -9,3 +9,4 @@ moto~=2.0.0
 schema~=0.7.4
 responses~=0.12.1
 jsonschema==3.2.0
+asyncio-nats-client==0.11.4

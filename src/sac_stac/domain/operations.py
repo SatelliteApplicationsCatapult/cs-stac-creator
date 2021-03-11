@@ -85,3 +85,15 @@ def get_bands_from_product_keys(product_keys: list) -> list:
     product_names = [Path(a).stem for a in product_keys]
     common_prefix = extract_common_prefix(product_names)
     return [b.replace(common_prefix, '') for b in product_names]
+
+
+def create_stac_catalog(s3_key: str):
+    pass
+
+
+def create_stac_collection(s3_key: str):
+    pass
+
+
+def create_stac_item(s3_key: str):
+    pass
