@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+
+  nats_sub:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sac-stac
+    depends_on:
+      - nats
+    environment:
+      - NATS_HOST=nats
+      - PYTHONDONTWRITEBYTECODE=1
+    volumes:
+      - ./src:/src
+      - ./tests:/tests
+    entrypoint:
+      - python
+      - /src/sac_stac/entrypoints/nats_eventconsumer.py
+
+  nats:
+    image: nats:alpine
+    ports:
+      - "4222:4222"
