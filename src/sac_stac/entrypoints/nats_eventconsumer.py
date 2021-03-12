@@ -3,7 +3,7 @@ import logging
 import signal
 
 from nats.aio.client import Client as NATS
-from sac_stac.domain.operations import create_stac_catalog, create_stac_collection, create_stac_item
+from sac_stac.service_layer.services import add_stac_collection, add_stac_item
 from sac_stac.load_config import get_nats_uri, LOG_LEVEL, LOG_FORMAT
 
 logging.basicConfig(level=LOG_LEVEL, format=LOG_FORMAT)
@@ -33,9 +33,8 @@ async def run(loop):
         data = msg.data.decode()
         logger.info(f"Received a message on '{subject}': {data}")
         r = {
-            'catalog': create_stac_catalog,
-            'collection': create_stac_collection,
-            'item': create_stac_item
+            'collection': add_stac_collection,
+            'item': add_stac_item
         }
         for k, v in r.items():
             if k in subject:
