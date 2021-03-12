@@ -110,7 +110,7 @@ def test_get_product_raster():
 
 
 @mock_s3
-def test_get_catalog():
+def test_get_dict():
     catalog_file_path = 'tests/output/catalog.json'
     catalog_s3_key = 'stac_catalogs/cs_stac/catalog.json'
 
@@ -122,27 +122,27 @@ def test_get_catalog():
     )
 
     repo = repository.S3Repository(s3)
-    catalog = repo.get_catalog(bucket=BUCKET, catalog_key=catalog_s3_key)
+    catalog = repo.get_dict(bucket=BUCKET, key=catalog_s3_key)
 
     catalog_file = load_json(catalog_file_path)
     assert catalog == catalog_file
 
 
 @mock_s3
-def test_get_catalog_does_not_exist():
+def test_get_dict_does_not_exist():
     catalog_s3_key = 'stac_catalogs/cs_stac/catalog.json'
 
     s3 = S3(key=None, secret=None, s3_endpoint=None, region_name='us-east-1')
     s3.s3_resource.create_bucket(Bucket=BUCKET)
 
     repo = repository.S3Repository(s3)
-    catalog = repo.get_catalog(bucket=BUCKET, catalog_key=catalog_s3_key)
+    catalog = repo.get_dict(bucket=BUCKET, key=catalog_s3_key)
 
     assert not catalog
 
 
 @mock_s3
-def test_add_catalog():
+def test_add_json_from_dict():
     catalog_s3_key = 'stac_catalogs/cs_stac/catalog.json'
     catalog = load_json('tests/output/catalog.json')
 
@@ -150,7 +150,7 @@ def test_add_catalog():
     s3.s3_resource.create_bucket(Bucket=BUCKET)
 
     repo = repository.S3Repository(s3)
-    resp = repo.add_catalog(bucket=BUCKET, catalog_key=catalog_s3_key, catalog=catalog)
+    resp = repo.add_json_from_dict(bucket=BUCKET, key=catalog_s3_key, stac_dict=catalog)
 
     uploaded_obj = s3.s3_resource.Object(bucket_name=BUCKET, key=catalog_s3_key).get()
     uploaded_catalog = json.loads(uploaded_obj.get('Body').read().decode('utf-8'))
