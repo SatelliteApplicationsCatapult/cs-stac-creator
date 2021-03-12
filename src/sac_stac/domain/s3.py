@@ -73,6 +73,14 @@ class S3:
             else:
                 raise
 
+    def put_object(self, bucket_name, key, body):
+        try:
+            response = self.s3_resource.Object(bucket_name=bucket_name, key=key).put(Body=body)
+            return response
+        except ClientError as ex:
+            logger.warning(f"Could not put {key} in {bucket_name} bucket: {ex}")
+            return None
+
     def list_common_prefixes(self, bucket_name, prefix):
         """
         List all common prefixes with the given prefix delimited by '/'.
