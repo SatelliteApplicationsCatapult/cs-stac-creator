@@ -1,3 +1,4 @@
+import json
 from typing import List
 
 from sac_stac.domain.s3 import S3
@@ -23,3 +24,7 @@ class S3Repository:
 
     def get_product_raster(self, bucket: str, product_key: str) -> bytes:
         return self.s3.get_object_body(bucket_name=bucket, object_name=product_key)
+
+    def get_catalog(self, bucket: str, catalog_key: str) -> dict:
+        catalog_body = self.s3.get_object_body(bucket_name=bucket, object_name=catalog_key)
+        return json.loads(catalog_body.decode('utf-8'))
