@@ -26,8 +26,12 @@ class S3Repository:
         return self.s3.get_object_body(bucket_name=bucket, object_name=product_key)
 
     def get_catalog(self, bucket: str, catalog_key: str) -> dict:
-        catalog_body = self.s3.get_object_body(bucket_name=bucket, object_name=catalog_key)
-        return json.loads(catalog_body.decode('utf-8'))
+        objs = self.s3.list_objects(bucket_name=bucket, prefix=catalog_key)
+        if objs:
+            catalog_body = self.s3.get_object_body(bucket_name=bucket, object_name=catalog_key)
+            return json.loads(catalog_body.decode('utf-8'))
+        else:
+            return {}
 
     def add_catalog(self, bucket: str, catalog_key: str, catalog: dict):
         response = self.s3.put_object(

@@ -129,6 +129,19 @@ def test_get_catalog():
 
 
 @mock_s3
+def test_get_catalog_does_not_exist():
+    catalog_s3_key = 'stac_catalogs/cs_stac/catalog.json'
+
+    s3 = S3(key=None, secret=None, s3_endpoint=None, region_name='us-east-1')
+    s3.s3_resource.create_bucket(Bucket=BUCKET)
+
+    repo = repository.S3Repository(s3)
+    catalog = repo.get_catalog(bucket=BUCKET, catalog_key=catalog_s3_key)
+
+    assert not catalog
+
+
+@mock_s3
 def test_add_catalog():
     catalog_s3_key = 'stac_catalogs/cs_stac/catalog.json'
     catalog = load_json('tests/output/catalog.json')
