@@ -28,3 +28,11 @@ class S3Repository:
     def get_catalog(self, bucket: str, catalog_key: str) -> dict:
         catalog_body = self.s3.get_object_body(bucket_name=bucket, object_name=catalog_key)
         return json.loads(catalog_body.decode('utf-8'))
+
+    def add_catalog(self, bucket: str, catalog_key: str, catalog: dict):
+        response = self.s3.put_object(
+            bucket_name=bucket,
+            key=catalog_key,
+            body=json.dumps(catalog)
+        )
+        return response.get('ResponseMetadata').get('HTTPStatusCode')

@@ -1,3 +1,5 @@
+import json
+
 from moto import mock_s3
 from sac_stac.adapters import repository
 from sac_stac.domain.s3 import S3
@@ -124,3 +126,21 @@ def test_get_catalog():
 
     catalog_file = load_json(catalog_file_path)
     assert catalog == catalog_file
+
+
+@mock_s3
+def test_add_catalog():
+    catalog_s3_key = 'stac_catalogs/cs_stac/catalog.json'
+    catalog = load_json('tests/output/catalog.json')
+
+    s3 = S3(key=None, secret=None, s3_endpoint=None, region_name='us-east-1')
+    s3.s3_resource.create_bucket(Bucket=BUCKET)
+
+    repo = repository.S3Repository(s3)
+    resp = repo.add_catalog(bucket=BUCKET, catalog_key=catalog_s3_key, catalog=catalog)
+
+    uploaded_obj = s3.s3_resource.Object(bucket_name=BUCKET, key=catalog_s3_key).get()
+    uploaded_catalog = json.loads(uploaded_obj.get('Body').read().decode('utf-8'))
+
+    assert resp == 200
+    assert catalog == uploaded_catalog
