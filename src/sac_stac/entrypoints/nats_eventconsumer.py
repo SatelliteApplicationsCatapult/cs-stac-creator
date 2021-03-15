@@ -3,12 +3,19 @@ import logging
 import signal
 
 from nats.aio.client import Client as NATS
+from sac_stac.adapters import repository
+from sac_stac.domain.s3 import S3
 from sac_stac.service_layer.services import add_stac_collection, add_stac_item
-from sac_stac.load_config import get_nats_uri, LOG_LEVEL, LOG_FORMAT
+from sac_stac.load_config import get_nats_uri, LOG_LEVEL, LOG_FORMAT, get_s3_configuration
 
 logging.basicConfig(level=LOG_LEVEL, format=LOG_FORMAT)
 
 logger = logging.getLogger(__name__)
+
+S3_ACCESS_KEY_ID = get_s3_configuration()["key_id"]
+S3_SECRET_ACCESS_KEY = get_s3_configuration()["access_key"]
+S3_REGION = get_s3_configuration()["region"]
+S3_ENDPOINT = get_s3_configuration()["endpoint"]
 
 
 async def run(loop):
@@ -36,9 +43,13 @@ async def run(loop):
             'collection': add_stac_collection,
             'item': add_stac_item
         }
+        s3 = S3(key=S3_ACCESS_KEY_ID, secret=S3_SECRET_ACCESS_KEY,
+                s3_endpoint=S3_ENDPOINT, region_name=S3_REGION)
+        repo = repository.S3Repository(s3)
+
         for k, v in r.items():
             if k in subject:
-                v(data)
+                v(repo, data)
 
     await nc.subscribe("stac.creator.*", cb=message_handler)
 

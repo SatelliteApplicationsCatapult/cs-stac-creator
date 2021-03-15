@@ -1,36 +1,46 @@
 import json
 import logging
 from pathlib import Path
+from urllib.parse import urlparse
 
+import boto3
 from geopandas import GeoSeries
-from pystac import Catalog, Extent, SpatialExtent, TemporalExtent, Asset, MediaType
+from pystac import Catalog, Extent, SpatialExtent, TemporalExtent, Asset, MediaType, STAC_IO
 from pystac.extensions.eo import Band
-from sac_stac.adapters import repository
+
+from sac_stac.adapters.repository import S3Repository
 from sac_stac.domain.model import SacCollection, SacItem
 from sac_stac.domain.operations import obtain_date_from_filename, get_geometry_from_cog, get_bands_from_product_keys, \
     get_projection_from_cog
-from sac_stac.domain.s3 import S3
 from sac_stac.load_config import config, LOG_LEVEL, LOG_FORMAT, get_s3_configuration
+from sac_stac.util import parse_s3_url
 
 logging.basicConfig(level=LOG_LEVEL, format=LOG_FORMAT)
 logger = logging.getLogger(__name__)
 
-S3_ACCESS_KEY_ID = get_s3_configuration()["key_id"]
-S3_SECRET_ACCESS_KEY = get_s3_configuration()["access_key"]
-S3_REGION = get_s3_configuration()["region"]
 S3_ENDPOINT = get_s3_configuration()["endpoint"]
 S3_BUCKET = get_s3_configuration()["bucket"]
 S3_STAC_KEY = get_s3_configuration()["stac_key"]
 S3_CATALOG_KEY = f"{S3_STAC_KEY}/catalog.json"
 
 
-def add_stac_collection(sensor_key: str):
+def my_read_method_for_s3(uri):
+    parsed = urlparse(uri)
+    if parsed.hostname == S3_ENDPOINT:
+        bucket, key = parse_s3_url(uri)
+        s3 = boto3.resource('s3')
+        obj = s3.Object(S3_BUCKET, key)
+        return obj.get()['Body'].read().decode('utf-8')
+    else:
+        return STAC_IO.default_read_text_method(uri)
 
-    s3 = S3(key=S3_ACCESS_KEY_ID, secret=S3_SECRET_ACCESS_KEY,
-            s3_endpoint=S3_ENDPOINT, region_name=S3_REGION)
-    repo = repository.S3Repository(s3)
+
+def add_stac_collection(repo: S3Repository, sensor_key: str):
+    STAC_IO.read_text_method = my_read_method_for_s3
 
     catalog_dict = repo.get_dict(bucket=S3_BUCKET, key=S3_CATALOG_KEY)
+    sensor_name = sensor_key.split('/')[-2]
+    collection_key = f"{S3_STAC_KEY}/{sensor_name}/collection.json"
 
     try:
         catalog = Catalog.from_dict(catalog_dict)
@@ -44,14 +54,15 @@ def add_stac_collection(sensor_key: str):
             stac_extensions=config.get('stac_extensions')
         )
 
-    sensor = [s for s in config.get('sensors') if s.get('title') in sensor_key][0]
+    sensors = [s for s in config.get('sensors')]
+    sensor = [s for s in sensors if s.get('id') in sensor_key][0]
 
     if sensor:
         collection = SacCollection(
             id=sensor.get('id'),
             title=sensor.get('title'),
             description=sensor.get('description'),
-            extent=Extent(SpatialExtent([[]]), TemporalExtent([[]])),
+            extent=Extent(SpatialExtent([[0, 0, 0, 0]]), TemporalExtent([["", ""]])),
             properties={}
         )
 
@@ -68,31 +79,30 @@ def add_stac_collection(sensor_key: str):
                                 stac_dict=catalog.to_dict())
         repo.add_json_from_dict(
             bucket=S3_BUCKET,
-            key=f"{S3_CATALOG_KEY}/{collection.id}/collection.json",
+            key=collection_key,
             stac_dict=collection.to_dict()
         )
 
         acquisition_keys = repo.get_acquisition_keys(bucket=S3_BUCKET,
                                                      acquisition_prefix=sensor_key)
         for acquisition_key in acquisition_keys:
-            add_stac_item(acquisition_key)
+            add_stac_item(repo=repo, acquisition_key=acquisition_key)
 
     else:
-        logger.warning(f"No config found for {sensor_key.split('/')[:-1]} sensor")
+        logger.warning(f"No config found for {sensor_name} sensor")
+
+    return repo.get_dict(bucket=S3_BUCKET, key=collection_key)
 
 
-def add_stac_item(acquisition_key: str):
+def add_stac_item(repo: S3Repository, acquisition_key: str):
 
-    s3 = S3(key=S3_ACCESS_KEY_ID, secret=S3_SECRET_ACCESS_KEY,
-            s3_endpoint=S3_ENDPOINT, region_name=S3_REGION)
-    repo = repository.S3Repository(s3)
-
-    collection_key = f"{'/'.join(acquisition_key.split('/')[:-1])}/collection.json"
+    sensor_name = acquisition_key.split('/')[-3]
+    collection_key = f"{S3_STAC_KEY}/{sensor_name}/collection.json"
     collection_dict = repo.get_dict(bucket=S3_BUCKET, key=collection_key)
 
     try:
         collection = SacCollection.from_dict(collection_dict)
-        sensor = [s for s in config.get('sensors') if s.get('title') == collection.id][0]
+        sensor = [s for s in config.get('sensors') if s.get('id') == collection.id][0]
 
         # Get date from acquisition name
         date = obtain_date_from_filename(
@@ -157,8 +167,10 @@ def add_stac_item(acquisition_key: str):
 
         collection.add_item(item)
         collection.update_extent_from_items()
+        collection.normalize_hrefs(config.get('output_url'))
 
-        repo.add_json_from_dict(bucket=S3_BUCKET, key=S3_CATALOG_KEY,
+        repo.add_json_from_dict(bucket=S3_BUCKET,
+                                key=collection_key,
                                 stac_dict=collection.to_dict())
         repo.add_json_from_dict(
             bucket=S3_BUCKET,
