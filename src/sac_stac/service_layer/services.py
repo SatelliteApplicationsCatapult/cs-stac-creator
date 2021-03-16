@@ -95,6 +95,7 @@ def add_stac_collection(repo: S3Repository, sensor_key: str):
 
 
 def add_stac_item(repo: S3Repository, acquisition_key: str):
+    STAC_IO.read_text_method = my_read_method_for_s3
 
     sensor_name = acquisition_key.split('/')[-3]
     collection_key = f"{S3_STAC_KEY}/{sensor_name}/collection.json"
@@ -149,7 +150,7 @@ def add_stac_item(repo: S3Repository, acquisition_key: str):
                 proj_shp, proj_tran = get_projection_from_cog(f'tests/data/{product_key}')
 
             asset = Asset(
-                href=product_key,
+                href=f"https://{S3_ENDPOINT}/{S3_BUCKET}/{product_key}",
                 media_type=MediaType.COG
             )
 
@@ -177,6 +178,8 @@ def add_stac_item(repo: S3Repository, acquisition_key: str):
             key=f"{S3_STAC_KEY}/{collection.id}/{item.id}/{item.id}.json",
             stac_dict=item.to_dict()
         )
+
+        return item
 
     except TypeError:
         logger.error(f"Invalid collection in {collection_key}, "
