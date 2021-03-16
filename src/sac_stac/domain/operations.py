@@ -1,4 +1,5 @@
 import logging
+import os
 import re
 from datetime import datetime
 from pathlib import Path
@@ -10,8 +11,7 @@ from rasterio.crs import CRS
 from shapely.geometry import box, Polygon
 
 from sac_stac.load_config import LOG_LEVEL, LOG_FORMAT
-from sac_stac.util import extract_common_prefix
-
+from sac_stac.util import extract_common_prefix, parse_s3_url
 
 logging.basicConfig(level=LOG_LEVEL, format=LOG_FORMAT)
 
@@ -47,6 +47,9 @@ def get_geometry_from_cog(cog_url: str) -> Tuple[Polygon, CRS]:
 
     :return: A Polygon and CRS objects.
     """
+    if os.environ.get("TEST_ENV"):
+        bucket, key = parse_s3_url(cog_url)
+        cog_url = f"tests/data/{key}"
     try:
         with rasterio.open(cog_url) as ds:
             geom = box(*ds.bounds)
@@ -66,6 +69,9 @@ def get_projection_from_cog(cog_url: str) -> Tuple[list, list]:
 
     :return: A shape and transform lists.
     """
+    if os.environ.get("TEST_ENV"):
+        bucket, key = parse_s3_url(cog_url)
+        cog_url = f"tests/data/{key}"
     try:
         with rasterio.open(cog_url) as ds:
             return list(ds.shape), list(ds.transform)

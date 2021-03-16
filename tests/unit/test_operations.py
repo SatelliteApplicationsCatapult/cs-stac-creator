@@ -1,3 +1,5 @@
+import os
+
 from shapely.geometry import Polygon
 from datetime import datetime
 from rasterio.crs import CRS
@@ -64,6 +66,23 @@ def test_get_geometry_from_cog_offline():
     assert not crs
 
 
+def test_get_geometry_from_cog_from_tests():
+    url = 'http://s3-uk-1.sa-catapult.co.uk/public-eo-data/' \
+          'common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KBU/' \
+          'S2A_MSIL2A_20151022T222102_T01KBU_B01_60m.tif'
+    try:
+        os.environ["TEST_ENV"] = "Yes"
+
+        geometry, crs = get_geometry_from_cog(url)
+
+        assert geometry == Polygon(
+            [(309780, 7790200), (309780, 7900000), (199980, 7900000), (199980, 7790200), (309780, 7790200)])
+        assert crs == CRS.from_user_input(32701)
+
+    finally:
+        os.environ.pop("TEST_ENV")
+
+
 def test_get_projection_from_cog():
 
     file = 'tests/data/common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KBU/' \
@@ -92,3 +111,20 @@ def test_get_bands_from_product_keys():
     assert sorted(bands) == sorted(['B01_60m', 'B03_10m', 'SCL_20m', 'B09_60m', 'B02_10m', 'B11_20m', 'B12_20m',
                                     'B08_10m', 'B04_10m', 'B07_20m', 'B8A_20m', 'AOT_10m', 'B06_20m', 'WVP_10m',
                                     'B05_20m'])
+
+
+def test_get_projection_from_cog_from_tests():
+
+    url = 'http://s3-uk-1.sa-catapult.co.uk/public-eo-data/' \
+          'common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KBU/' \
+          'S2A_MSIL2A_20151022T222102_T01KBU_B01_60m.tif'
+    try:
+        os.environ["TEST_ENV"] = "Yes"
+
+        proj_shp, proj_tran = get_projection_from_cog(url)
+
+        assert proj_shp == [1830, 1830]
+        assert proj_tran == [60.0, 0.0, 199980.0, 0.0, -60.0, 7900000.0, 0.0, 0.0, 1.0]
+
+    finally:
+        os.environ.pop("TEST_ENV")
