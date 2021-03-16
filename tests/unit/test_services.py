@@ -1,3 +1,4 @@
+import os
 import shutil
 from pathlib import Path
 
@@ -36,14 +37,19 @@ def add_stac_s3(sensor_name, s3_resource, bucket_name):
 @mock_s3
 def test_add_stac_collection():
     sensor_key = 'common_sensing/fiji/landsat_5/'
-    s3 = S3(key=None, secret=None, s3_endpoint=None, region_name='us-east-1')
-    initialise_s3_bucket(sensor_key, s3.s3_resource, 'public-eo-data')
+    try:
+        os.environ["TEST_ENV"] = "Yes"
 
-    repo = repository.S3Repository(s3)
+        s3 = S3(key=None, secret=None, s3_endpoint=None, region_name='us-east-1')
+        initialise_s3_bucket(sensor_key, s3.s3_resource, 'public-eo-data')
 
-    collection = services.add_stac_collection(repo=repo, sensor_key=sensor_key)
+        repo = repository.S3Repository(s3)
 
-    assert collection
+        collection = services.add_stac_collection(repo=repo, sensor_key=sensor_key)
+
+        assert collection
+    finally:
+        os.environ.pop("TEST_ENV")
 
 
 @mock_s3
@@ -52,6 +58,8 @@ def test_add_stac_item():
     sensor_key = f'common_sensing/fiji/{sensor_name}/'
     acquisition_key = f'{sensor_key}LT05_L1TP_075073_19920125/'
     try:
+        os.environ["TEST_ENV"] = "Yes"
+
         s3 = S3(key=None, secret=None, s3_endpoint=None, region_name='us-east-1')
 
         shutil.copytree(f'tests/data/test_add_stac_item/{acquisition_key}',
@@ -67,3 +75,4 @@ def test_add_stac_item():
         assert item
     finally:
         shutil.rmtree(f'tests/data/{acquisition_key}')
+        os.environ.pop("TEST_ENV")

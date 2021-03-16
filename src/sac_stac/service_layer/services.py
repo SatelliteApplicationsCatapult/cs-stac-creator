@@ -113,10 +113,11 @@ def add_stac_item(repo: S3Repository, acquisition_key: str):
         )
 
         # Get sample product and extract geometry
-        product_sample = repo.get_smallest_product_key(bucket=S3_BUCKET,
-                                                       products_prefix=acquisition_key)
-        #                  ** ONLY FOR TESTING **
-        product_sample = f'tests/data/{product_sample}'
+        product_sample_key = repo.get_smallest_product_key(
+            bucket=S3_BUCKET,
+            products_prefix=acquisition_key
+        )
+        product_sample = f"https://{S3_ENDPOINT}/{S3_BUCKET}/{product_sample_key}"
         geometry, crs = get_geometry_from_cog(product_sample)
 
         item = SacItem(
@@ -140,17 +141,17 @@ def add_stac_item(repo: S3Repository, acquisition_key: str):
 
         for band_name, band_common_name in [(b.get('name'), b.get('common_name')) for b in bands_metadata]:
 
-            product_key = ''
+            asset_href = ''
             proj_shp = []
             proj_tran = []
 
             if band_name in bands:
                 product_key = [k for k in product_keys if band_name in k][0]
-                #                                               ** ONLY FOR TESTING **
-                proj_shp, proj_tran = get_projection_from_cog(f'tests/data/{product_key}')
+                asset_href = f"https://{S3_ENDPOINT}/{S3_BUCKET}/{product_key}"
+                proj_shp, proj_tran = get_projection_from_cog(asset_href)
 
             asset = Asset(
-                href=f"https://{S3_ENDPOINT}/{S3_BUCKET}/{product_key}",
+                href=asset_href,
                 media_type=MediaType.COG
             )
 
