@@ -1,4 +1,5 @@
 import asyncio
+import json
 import logging
 import signal
 
@@ -43,15 +44,17 @@ async def run(loop):
             'collection': add_stac_collection,
             'item': add_stac_item
         }
-        s3 = S3(key=S3_ACCESS_KEY_ID, secret=S3_SECRET_ACCESS_KEY,
-                s3_endpoint=S3_ENDPOINT, region_name=S3_REGION)
-        repo = repository.S3Repository(s3)
+        message_type = subject.split('.')[1]
+        if message_type in r.keys():
+            s3 = S3(key=S3_ACCESS_KEY_ID, secret=S3_SECRET_ACCESS_KEY,
+                    s3_endpoint=S3_ENDPOINT, region_name=S3_REGION)
+            repo = repository.S3Repository(s3)
 
-        for k, v in r.items():
-            if k in subject:
-                v(repo, data)
+            for k, v in r.items():
+                if k in subject:
+                    stac = v(repo, data)
 
-    await nc.subscribe("stac.creator.*", cb=message_handler)
+    await nc.subscribe("stac_creator.*", cb=message_handler)
 
     def signal_handler():
         if nc.is_closed:

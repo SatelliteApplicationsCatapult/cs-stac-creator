@@ -24,19 +24,8 @@ S3_STAC_KEY = get_s3_configuration()["stac_key"]
 S3_CATALOG_KEY = f"{S3_STAC_KEY}/catalog.json"
 
 
-def my_read_method_for_s3(uri):
-    parsed = urlparse(uri)
-    if parsed.hostname == S3_ENDPOINT:
-        bucket, key = parse_s3_url(uri)
-        s3 = boto3.resource('s3')
-        obj = s3.Object(S3_BUCKET, key)
-        return obj.get()['Body'].read().decode('utf-8')
-    else:
-        return STAC_IO.default_read_text_method(uri)
-
-
 def add_stac_collection(repo: S3Repository, sensor_key: str):
-    STAC_IO.read_text_method = my_read_method_for_s3
+    STAC_IO.read_text_method = repo.stac_read_method
 
     catalog_dict = repo.get_dict(bucket=S3_BUCKET, key=S3_CATALOG_KEY)
     sensor_name = sensor_key.split('/')[-2]
@@ -82,6 +71,7 @@ def add_stac_collection(repo: S3Repository, sensor_key: str):
             key=collection_key,
             stac_dict=collection.to_dict()
         )
+        logger.info(f"{sensor_name} collection added to {collection_key}")
 
         acquisition_keys = repo.get_acquisition_keys(bucket=S3_BUCKET,
                                                      acquisition_prefix=sensor_key)
@@ -95,11 +85,12 @@ def add_stac_collection(repo: S3Repository, sensor_key: str):
 
 
 def add_stac_item(repo: S3Repository, acquisition_key: str):
-    STAC_IO.read_text_method = my_read_method_for_s3
+    STAC_IO.read_text_method = repo.stac_read_method
 
     sensor_name = acquisition_key.split('/')[-3]
     collection_key = f"{S3_STAC_KEY}/{sensor_name}/collection.json"
     collection_dict = repo.get_dict(bucket=S3_BUCKET, key=collection_key)
+    logger.debug(f"[Item] Adding {acquisition_key} item to {sensor_name}...")
 
     try:
         collection = SacCollection.from_dict(collection_dict)
@@ -117,7 +108,7 @@ def add_stac_item(repo: S3Repository, acquisition_key: str):
             bucket=S3_BUCKET,
             products_prefix=acquisition_key
         )
-        product_sample = f"https://{S3_ENDPOINT}/{S3_BUCKET}/{product_sample_key}"
+        product_sample = f"{S3_ENDPOINT}/{S3_BUCKET}/{product_sample_key}"
         geometry, crs = get_geometry_from_cog(product_sample)
 
         item = SacItem(
@@ -147,7 +138,7 @@ def add_stac_item(repo: S3Repository, acquisition_key: str):
 
             if band_name in bands:
                 product_key = [k for k in product_keys if band_name in k][0]
-                asset_href = f"https://{S3_ENDPOINT}/{S3_BUCKET}/{product_key}"
+                asset_href = f"{S3_ENDPOINT}/{S3_BUCKET}/{product_key}"
                 proj_shp, proj_tran = get_projection_from_cog(asset_href)
 
             asset = Asset(
@@ -164,12 +155,12 @@ def add_stac_item(repo: S3Repository, acquisition_key: str):
                 name=band_common_name, description='TBD', common_name=band_common_name)],
                 asset
             )
-
+            logger.debug(f"[Asset] Adding {asset_href} asset to {acquisition_key}...")
             item.add_asset(key=band_common_name, asset=asset)
 
         collection.add_item(item)
         collection.update_extent_from_items()
-        collection.normalize_hrefs(config.get('output_url'))
+        collection.normalize_hrefs(f"{config.get('output_url')}/{sensor_name}")
 
         repo.add_json_from_dict(bucket=S3_BUCKET,
                                 key=collection_key,
@@ -179,6 +170,7 @@ def add_stac_item(repo: S3Repository, acquisition_key: str):
             key=f"{S3_STAC_KEY}/{collection.id}/{item.id}/{item.id}.json",
             stac_dict=item.to_dict()
         )
+        logger.info(f"{item.id} item added to {collection.id}")
 
         return item
 

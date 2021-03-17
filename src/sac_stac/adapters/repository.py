@@ -1,7 +1,13 @@
 import json
 from typing import List
+from urllib.parse import urlparse
 
+from pystac import STAC_IO
 from sac_stac.domain.s3 import S3
+from sac_stac.load_config import get_s3_configuration
+from sac_stac.util import parse_s3_url
+
+S3_ENDPOINT = get_s3_configuration()["endpoint"]
 
 
 class S3Repository:
@@ -40,3 +46,12 @@ class S3Repository:
             body=json.dumps(stac_dict)
         )
         return response.get('ResponseMetadata').get('HTTPStatusCode')
+
+    def stac_read_method(self, uri):
+        parsed = urlparse(uri)
+        if parsed.hostname in S3_ENDPOINT:
+            bucket, key = parse_s3_url(uri)
+            body = self.s3.get_object_body(bucket_name=bucket, object_name=key)
+            return body.decode('utf-8')
+        else:
+            return STAC_IO.default_read_text_method(uri)
