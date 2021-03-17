@@ -81,7 +81,7 @@ def add_stac_collection(repo: S3Repository, sensor_key: str):
     else:
         logger.warning(f"No config found for {sensor_name} sensor")
 
-    return repo.get_dict(bucket=S3_BUCKET, key=collection_key)
+    return 'collection', collection_key
 
 
 def add_stac_item(repo: S3Repository, acquisition_key: str):
@@ -165,14 +165,15 @@ def add_stac_item(repo: S3Repository, acquisition_key: str):
         repo.add_json_from_dict(bucket=S3_BUCKET,
                                 key=collection_key,
                                 stac_dict=collection.to_dict())
+        item_key = f"{S3_STAC_KEY}/{collection.id}/{item.id}/{item.id}.json"
         repo.add_json_from_dict(
             bucket=S3_BUCKET,
-            key=f"{S3_STAC_KEY}/{collection.id}/{item.id}/{item.id}.json",
+            key=item_key,
             stac_dict=item.to_dict()
         )
         logger.info(f"{item.id} item added to {collection.id}")
 
-        return item
+        return 'item', item_key
 
     except TypeError:
         logger.error(f"Invalid collection in {collection_key}, "

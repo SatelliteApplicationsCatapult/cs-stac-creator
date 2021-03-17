@@ -45,9 +45,10 @@ def test_add_stac_collection():
 
         repo = repository.S3Repository(s3)
 
-        collection = services.add_stac_collection(repo=repo, sensor_key=sensor_key)
+        stac_type, collection_key = services.add_stac_collection(repo=repo, sensor_key=sensor_key)
 
-        assert collection
+        assert stac_type == 'collection'
+        assert collection_key == 'stac_catalogs/cs_stac/landsat_5/collection.json'
     finally:
         os.environ.pop("TEST_ENV")
 
@@ -70,9 +71,10 @@ def test_add_stac_item():
 
         repo = repository.S3Repository(s3)
 
-        item = services.add_stac_item(repo=repo, acquisition_key=acquisition_key)
+        stac_type, item_key = services.add_stac_item(repo=repo, acquisition_key=acquisition_key)
 
-        assert item
+        assert stac_type == 'item'
+        assert item_key == 'stac_catalogs/cs_stac/landsat_5/LT05_L1TP_075073_19920125/LT05_L1TP_075073_19920125.json'
     finally:
         shutil.rmtree(f'tests/data/{acquisition_key}')
         os.environ.pop("TEST_ENV")
