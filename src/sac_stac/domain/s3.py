@@ -68,10 +68,8 @@ class S3:
             return obj.get('Body').read()
         except ClientError as ex:
             if ex.response['Error']['Code'] == 'NoSuchKey':
-                logger.warning(f"No object found for {object_name} in {bucket_name} bucket")
-                return None
-            else:
-                raise
+                logger.info(f"No object found for {object_name} in {bucket_name} bucket")
+                raise NoObjectError
 
     def put_object(self, bucket_name, key, body):
         try:
@@ -96,3 +94,8 @@ class S3:
                 common_prefixes = [p.get('Prefix') for p in result.get('CommonPrefixes')]
 
         return common_prefixes
+
+
+class NoObjectError(Exception):
+    pass
+

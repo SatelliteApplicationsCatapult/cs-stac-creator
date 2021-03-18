@@ -1,8 +1,9 @@
 import json
 
+import pytest
 from moto import mock_s3
 from sac_stac.adapters import repository
-from sac_stac.domain.s3 import S3
+from sac_stac.domain.s3 import S3, NoObjectError
 from pathlib import Path
 
 from sac_stac.util import load_json
@@ -136,9 +137,9 @@ def test_get_dict_does_not_exist():
     s3.s3_resource.create_bucket(Bucket=BUCKET)
 
     repo = repository.S3Repository(s3)
-    catalog = repo.get_dict(bucket=BUCKET, key=catalog_s3_key)
 
-    assert not catalog
+    with pytest.raises(NoObjectError):
+        repo.get_dict(bucket=BUCKET, key=catalog_s3_key)
 
 
 @mock_s3

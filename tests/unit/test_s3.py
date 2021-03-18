@@ -1,8 +1,9 @@
 import json
 from pathlib import Path
 
+import pytest
 from moto import mock_s3
-from sac_stac.domain.s3 import S3
+from sac_stac.domain.s3 import S3, NoObjectError
 
 BUCKET = 'test'
 
@@ -34,10 +35,9 @@ def test_get_object_body_non_exist():
     s3 = S3(key=None, secret=None, s3_endpoint=None, region_name='us-east-1')
     initialise_bucket(s3_resource=s3.s3_resource, bucket_name=BUCKET)
 
-    obj = s3.get_object_body(bucket_name=BUCKET,
-                             object_name='nothing')
-
-    assert not obj
+    with pytest.raises(NoObjectError):
+        s3.get_object_body(bucket_name=BUCKET,
+                           object_name='nothing')
 
 
 @mock_s3
