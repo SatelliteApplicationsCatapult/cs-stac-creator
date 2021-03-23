@@ -81,7 +81,7 @@ def add_stac_collection(repo: S3Repository, sensor_key: str):
             key=collection_key,
             stac_dict=collection.to_dict()
         )
-        logger.info(f"{sensor_name} collection added to {collection_key}")
+        logger.info(f"{sensor_name} collection added to {S3_CATALOG_KEY}")
 
     acquisition_keys = repo.get_acquisition_keys(bucket=S3_BUCKET,
                                                  acquisition_prefix=sensor_key)
@@ -153,6 +153,8 @@ def add_stac_item(repo: S3Repository, acquisition_key: str):
                     product_key = [k for k in product_keys if band_name in k][0]
                     asset_href = f"{S3_HREF}/{product_key}"
                     proj_shp, proj_tran = get_projection_from_cog(asset_href)
+                else:
+                    logger.warning(f"{band_name} band not found on {collection.id}/{item.id} acquisition.")
 
                 asset = Asset(
                     href=asset_href,
