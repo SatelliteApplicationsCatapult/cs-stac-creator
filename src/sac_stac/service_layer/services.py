@@ -146,8 +146,8 @@ def add_stac_item(repo: S3Repository, acquisition_key: str):
 
             for band_name, band_common_name in [(b.get('name'), b.get('common_name')) for b in bands_metadata]:
                 asset_href = ''
-                proj_shp = []
-                proj_tran = []
+                proj_shp = [0, 0]
+                proj_tran = [0, 0, 0, 0, 0, 0]
 
                 if band_name in bands:
                     product_key = [k for k in product_keys if band_name in k][0]
