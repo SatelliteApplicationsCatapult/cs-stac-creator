@@ -8,7 +8,7 @@ from pystac.extensions.eo import Band
 
 from sac_stac.adapters.repository import S3Repository, NoObjectError
 from sac_stac.domain.model import SacCollection, SacItem
-from sac_stac.domain.operations import obtain_date_from_filename, get_geometry_from_cog, get_bands_from_product_keys, \
+from sac_stac.domain.operations import obtain_date_from_filename, get_geometry_from_cog, \
     get_projection_from_cog
 from sac_stac.load_config import config, LOG_LEVEL, LOG_FORMAT, get_s3_configuration
 
@@ -142,15 +142,16 @@ def add_stac_item(repo: S3Repository, acquisition_key: str):
 
             bands_metadata = sensor_conf.get('extensions').get('eo').get('bands')
             product_keys = repo.get_product_keys(bucket=S3_BUCKET, products_prefix=acquisition_key)
-            bands = get_bands_from_product_keys(product_keys)
 
             for band_name, band_common_name in [(b.get('name'), b.get('common_name')) for b in bands_metadata]:
                 asset_href = ''
                 proj_shp = [0, 0]
                 proj_tran = [0, 0, 0, 0, 0, 0]
 
-                if band_name in bands:
-                    product_key = [k for k in product_keys if band_name in k][0]
+                band_name_in_product_keys = [p for p in product_keys if band_name in p]
+
+                if band_name_in_product_keys:
+                    product_key = band_name_in_product_keys[0]
                     asset_href = f"{S3_HREF}/{product_key}"
                     proj_shp, proj_tran = get_projection_from_cog(asset_href)
                 else:

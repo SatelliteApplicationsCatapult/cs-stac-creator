@@ -4,9 +4,8 @@ from shapely.geometry import Polygon
 from datetime import datetime
 from rasterio.crs import CRS
 
-from sac_stac.domain.operations import obtain_date_from_filename, get_bands_from_product_keys, \
+from sac_stac.domain.operations import obtain_date_from_filename, \
     get_geometry_from_cog, get_projection_from_cog
-from sac_stac.util import get_files_from_dir
 
 
 def test_obtain_date_from_filename_sentinel():
@@ -102,15 +101,6 @@ def test_get_projection_from_cog_offline():
 
     assert not proj_shp
     assert not proj_tran
-
-
-def test_get_bands_from_product_keys():
-    assets = get_files_from_dir('tests/data/common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KBU', 'tif')
-    bands = get_bands_from_product_keys(assets)
-
-    assert sorted(bands) == sorted(['B01_60m', 'B03_10m', 'SCL_20m', 'B09_60m', 'B02_10m', 'B11_20m', 'B12_20m',
-                                    'B08_10m', 'B04_10m', 'B07_20m', 'B8A_20m', 'AOT_10m', 'B06_20m', 'WVP_10m',
-                                    'B05_20m'])
 
 
 def test_get_projection_from_cog_from_tests():

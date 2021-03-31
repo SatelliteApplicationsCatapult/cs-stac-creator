@@ -78,16 +78,3 @@ def get_projection_from_cog(cog_url: str) -> Tuple[list, list]:
     except RasterioIOError as e:
         logger.warning(f"Error extracting projection from {cog_url}: {e}")
         return [], []
-
-
-def get_bands_from_product_keys(product_keys: list) -> list:
-    """
-    Obtain a list of bands used for the given product keys.
-
-    :param product_keys: list of S3 keys for products.
-
-    :return: list of band names.
-    """
-    product_names = [Path(a).stem for a in product_keys]
-    common_prefix = extract_common_prefix(product_names)
-    return [b.replace(common_prefix, '') for b in product_names]
