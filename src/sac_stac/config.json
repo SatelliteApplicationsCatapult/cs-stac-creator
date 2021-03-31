@@ -584,6 +584,60 @@
           "metadata": {
             "product":{
               "name":"landsat_4"
+            },
+    {
+      "id": "sentinel_1",
+      "title": "ESA Sentinel-1 Datasets",
+      "description":"A collection of Sentinel-1 datasets. Gamma0 Backscatter products downloaded via ASF, processed and prepared by Catapult.",
+      "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/sentinel_1/",
+      "formatting": {
+        "date": {
+          "regex": "(\\d{8})",
+          "format": "%Y%m%d"
+        }
+      },
+      "providers": [
+        {
+          "name": "ESA",
+          "roles": ["producer", "licensor"],
+          "url": "https://www.esa.int/"
+        },
+        {
+          "name": "Satellite Applications Catapult",
+          "roles": ["processor", "host"],
+          "url": "https://sa.catapult.org.uk/"
+        }
+      ],
+      "common_metadata": {
+        "gsd": 20,
+        "instruments": ["c-sar"],
+        "constellation": "sentinel_1",
+        "platform": "sentinel_1"
+      },
+      "extensions": {
+        "eo": {
+          "bands": [
+              {
+                "name": "Gamma0_VH_db",
+                "common_name": "gamma0_VH",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": 0
+              },
+              {
+                "name": "Gamma0_VV_db",
+                "common_name": "gamma0_VV",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": 0
+              }
+          ]
+        },
+        "product_definition": {
+          "metadata_type": "eo3",
+          "metadata": {
+            "product":{
+              "name":"sentinel_1"
             }
           }
         }
