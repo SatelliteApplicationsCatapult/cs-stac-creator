@@ -584,7 +584,11 @@
           "metadata": {
             "product":{
               "name":"landsat_4"
-            },
+            }
+          }
+        }
+      }
+    },
     {
       "id": "sentinel_1",
       "title": "ESA Sentinel-1 Datasets",
