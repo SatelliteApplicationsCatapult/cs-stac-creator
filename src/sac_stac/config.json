@@ -1,16 +1,18 @@
 {
   "id": "cs-stac",
   "title": "IPP Common Sensing Geospatial Datasets",
-  "description":"A catalog of optical and synthetic aperture radar (SAR) satellite datasets and derived products. Hosted by Satellite Applications Catapult.",
+  "description": "A catalog of optical and synthetic aperture radar (SAR) satellite datasets and derived products. Hosted by Satellite Applications Catapult.",
   "extensions": [
-    "eo", "projection", "product_definition"
+    "eo",
+    "projection",
+    "product_definition"
   ],
   "output_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/stac_catalogs/cs_stac",
   "sensors": [
     {
       "id": "sentinel_2",
       "title": "Copernicus Sentinel-2 datasets",
-      "description":"A collection of Sentinel-2 datasets. Obtained from Copernicus Hub and Google Cloud and prepared by Catapult.",
+      "description": "A collection of Sentinel-2 datasets. Obtained from Copernicus Hub and Google Cloud and prepared by Catapult.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/sentinel_2/",
       "formatting": {
         "date": {
@@ -21,18 +23,26 @@
       "providers": [
         {
           "name": "European Space Agency",
-          "roles": ["producer", "licensor"],
+          "roles": [
+            "producer",
+            "licensor"
+          ],
           "url": "https://www.esa.int/"
         },
         {
           "name": "Satellite Applications Catapult",
-          "roles": ["processor", "host"],
+          "roles": [
+            "processor",
+            "host"
+          ],
           "url": "https://sa.catapult.org.uk/"
         }
       ],
       "common_metadata": {
         "gsd": 10,
-        "instruments": ["msi"],
+        "instruments": [
+          "msi"
+        ],
         "constellation": "sentinel_2",
         "platform": "sentinel_2"
       },
@@ -150,8 +160,8 @@
         "product_definition": {
           "metadata_type": "eo3",
           "metadata": {
-            "product":{
-              "name":"sentinel_2"
+            "product": {
+              "name": "sentinel_2"
             }
           }
         }
@@ -160,7 +170,7 @@
     {
       "id": "landsat_8",
       "title": "USGS Landsat-8 Datasets",
-      "description":"A collection of Landsat-8 datasets. Surface reflectance products ordered via ESPA and prepared by Catapult.",
+      "description": "A collection of Landsat-8 datasets. Surface reflectance products ordered via ESPA and prepared by Catapult.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/landsat_8/",
       "formatting": {
         "date": {
@@ -171,18 +181,26 @@
       "providers": [
         {
           "name": "USGS",
-          "roles": ["producer", "licensor"],
+          "roles": [
+            "producer",
+            "licensor"
+          ],
           "url": "https://www.esa.int/"
         },
         {
           "name": "Satellite Applications Catapult",
-          "roles": ["processor", "host"],
+          "roles": [
+            "processor",
+            "host"
+          ],
           "url": "https://sa.catapult.org.uk/"
         }
       ],
       "common_metadata": {
         "gsd": 15,
-        "instruments": ["oli"],
+        "instruments": [
+          "oli"
+        ],
         "constellation": "landsat_8",
         "platform": "landsat_8"
       },
@@ -190,97 +208,97 @@
         "eo": {
           "cloud_cover": 0.0,
           "bands": [
-              {
-                "name": "sr_band1",
-                "common_name": "coastal",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band2",
-                "common_name": "blue",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band3",
-                "common_name": "green",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band4",
-                "common_name": "red",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band5",
-                "common_name": "nir08",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band6",
-                "common_name": "swir16",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band7",
-                "common_name": "swir22",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "bt_band10",
-                "common_name": "lwir11",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "bt_band1",
-                "common_name": "lwir12",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "pixel_qa",
-                "common_name": "pixel_qa",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name":"radsat_qa",
-                "common_name": "radsat_qa",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_aerosol",
-                "common_name": "aerosol",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              }
+            {
+              "name": "sr_band1",
+              "common_name": "coastal",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band2",
+              "common_name": "blue",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band3",
+              "common_name": "green",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band4",
+              "common_name": "red",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band5",
+              "common_name": "nir08",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band6",
+              "common_name": "swir16",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band7",
+              "common_name": "swir22",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "bt_band10",
+              "common_name": "lwir11",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "bt_band1",
+              "common_name": "lwir12",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "pixel_qa",
+              "common_name": "pixel_qa",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "radsat_qa",
+              "common_name": "radsat_qa",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_aerosol",
+              "common_name": "aerosol",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            }
           ]
         },
         "product_definition": {
           "metadata_type": "eo3",
           "metadata": {
-            "product":{
-              "name":"landsat_8"
+            "product": {
+              "name": "landsat_8"
             }
           }
         }
@@ -289,7 +307,7 @@
     {
       "id": "landsat_7",
       "title": "USGS Landsat-7 Datasets",
-      "description":"A collection of Landsat-7 datasets. Surface reflectance products ordered via ESPA and prepared by Catapult.",
+      "description": "A collection of Landsat-7 datasets. Surface reflectance products ordered via ESPA and prepared by Catapult.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/landsat_7/",
       "formatting": {
         "date": {
@@ -300,18 +318,26 @@
       "providers": [
         {
           "name": "USGS",
-          "roles": ["producer", "licensor"],
+          "roles": [
+            "producer",
+            "licensor"
+          ],
           "url": "https://www.esa.int/"
         },
         {
           "name": "Satellite Applications Catapult",
-          "roles": ["processor", "host"],
+          "roles": [
+            "processor",
+            "host"
+          ],
           "url": "https://sa.catapult.org.uk/"
         }
       ],
       "common_metadata": {
         "gsd": 15,
-        "instruments": ["etm"],
+        "instruments": [
+          "etm"
+        ],
         "constellation": "landsat_7",
         "platform": "landsat_7"
       },
@@ -319,69 +345,69 @@
         "eo": {
           "cloud_cover": 0.0,
           "bands": [
-              {
-                "name": "sr_band1",
-                "common_name": "blue",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band2",
-                "common_name": "green",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band3",
-                "common_name": "red",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band4",
-                "common_name": "nir",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band5",
-                "common_name": "swir16",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band7",
-                "common_name": "swir22",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "bt_band6",
-                "common_name": "lwir",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "pixel_qa",
-                "common_name": "pixel_qa",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              }
+            {
+              "name": "sr_band1",
+              "common_name": "blue",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band2",
+              "common_name": "green",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band3",
+              "common_name": "red",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band4",
+              "common_name": "nir",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band5",
+              "common_name": "swir16",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band7",
+              "common_name": "swir22",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "bt_band6",
+              "common_name": "lwir",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "pixel_qa",
+              "common_name": "pixel_qa",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            }
           ]
         },
         "product_definition": {
           "metadata_type": "eo3",
           "metadata": {
-            "product":{
-              "name":"landsat_7"
+            "product": {
+              "name": "landsat_7"
             }
           }
         }
@@ -390,7 +416,7 @@
     {
       "id": "landsat_5",
       "title": "USGS Landsat-5 Datasets",
-      "description":"A collection of Landsat-5 datasets. Surface reflectance products ordered via ESPA and prepared by Catapult.",
+      "description": "A collection of Landsat-5 datasets. Surface reflectance products ordered via ESPA and prepared by Catapult.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/landsat_5/",
       "formatting": {
         "date": {
@@ -401,18 +427,26 @@
       "providers": [
         {
           "name": "USGS",
-          "roles": ["producer", "licensor"],
+          "roles": [
+            "producer",
+            "licensor"
+          ],
           "url": "https://www.esa.int/"
         },
         {
           "name": "Satellite Applications Catapult",
-          "roles": ["processor", "host"],
+          "roles": [
+            "processor",
+            "host"
+          ],
           "url": "https://sa.catapult.org.uk/"
         }
       ],
       "common_metadata": {
         "gsd": 30,
-        "instruments": ["tm"],
+        "instruments": [
+          "tm"
+        ],
         "constellation": "landsat_5",
         "platform": "landsat_5"
       },
@@ -420,69 +454,69 @@
         "eo": {
           "cloud_cover": 0.0,
           "bands": [
-              {
-                "name": "sr_band1",
-                "common_name": "blue",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band2",
-                "common_name": "green",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band3",
-                "common_name": "red",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band4",
-                "common_name": "nir",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band5",
-                "common_name": "swir16",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band7",
-                "common_name": "swir22",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "bt_band6",
-                "common_name": "lwir",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "pixel_qa",
-                "common_name": "pixel_qa",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              }
+            {
+              "name": "sr_band1",
+              "common_name": "blue",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band2",
+              "common_name": "green",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band3",
+              "common_name": "red",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band4",
+              "common_name": "nir",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band5",
+              "common_name": "swir16",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band7",
+              "common_name": "swir22",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "bt_band6",
+              "common_name": "lwir",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "pixel_qa",
+              "common_name": "pixel_qa",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            }
           ]
         },
         "product_definition": {
           "metadata_type": "eo3",
           "metadata": {
-            "product":{
-              "name":"landsat_5"
+            "product": {
+              "name": "landsat_5"
             }
           }
         }
@@ -491,7 +525,7 @@
     {
       "id": "landsat_4",
       "title": "USGS Landsat-4 Datasets",
-      "description":"A collection of Landsat-4 datasets. Surface reflectance products ordered via ESPA and prepared by Catapult.",
+      "description": "A collection of Landsat-4 datasets. Surface reflectance products ordered via ESPA and prepared by Catapult.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/landsat_4/",
       "formatting": {
         "date": {
@@ -502,18 +536,26 @@
       "providers": [
         {
           "name": "USGS",
-          "roles": ["producer", "licensor"],
+          "roles": [
+            "producer",
+            "licensor"
+          ],
           "url": "https://www.esa.int/"
         },
         {
           "name": "Satellite Applications Catapult",
-          "roles": ["processor", "host"],
+          "roles": [
+            "processor",
+            "host"
+          ],
           "url": "https://sa.catapult.org.uk/"
         }
       ],
       "common_metadata": {
         "gsd": 30,
-        "instruments": ["tm"],
+        "instruments": [
+          "tm"
+        ],
         "constellation": "landsat_4",
         "platform": "landsat_4"
       },
@@ -521,69 +563,69 @@
         "eo": {
           "cloud_cover": 0.0,
           "bands": [
-              {
-                "name": "sr_band1",
-                "common_name": "blue",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band2",
-                "common_name": "green",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band3",
-                "common_name": "red",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band4",
-                "common_name": "nir",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band5",
-                "common_name": "swir16",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "sr_band7",
-                "common_name": "swir22",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "bt_band6",
-                "common_name": "lwir",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              },
-              {
-                "name": "pixel_qa",
-                "common_name": "pixel_qa",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": -9999
-              }
+            {
+              "name": "sr_band1",
+              "common_name": "blue",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band2",
+              "common_name": "green",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band3",
+              "common_name": "red",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band4",
+              "common_name": "nir",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band5",
+              "common_name": "swir16",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "sr_band7",
+              "common_name": "swir22",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "bt_band6",
+              "common_name": "lwir",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "pixel_qa",
+              "common_name": "pixel_qa",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            }
           ]
         },
         "product_definition": {
           "metadata_type": "eo3",
           "metadata": {
-            "product":{
-              "name":"landsat_4"
+            "product": {
+              "name": "landsat_4"
             }
           }
         }
@@ -592,7 +634,7 @@
     {
       "id": "sentinel_1",
       "title": "ESA Sentinel-1 Datasets",
-      "description":"A collection of Sentinel-1 datasets. Gamma0 Backscatter products downloaded via ASF, processed and prepared by Catapult.",
+      "description": "A collection of Sentinel-1 datasets. Gamma0 Backscatter products downloaded via ASF, processed and prepared by Catapult.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/sentinel_1/",
       "formatting": {
         "date": {
@@ -603,45 +645,54 @@
       "providers": [
         {
           "name": "ESA",
-          "roles": ["producer", "licensor"],
+          "roles": [
+            "producer",
+            "licensor"
+          ],
           "url": "https://www.esa.int/"
         },
         {
           "name": "Satellite Applications Catapult",
-          "roles": ["processor", "host"],
+          "roles": [
+            "processor",
+            "host"
+          ],
           "url": "https://sa.catapult.org.uk/"
         }
       ],
       "common_metadata": {
         "gsd": 20,
-        "instruments": ["c-sar"],
+        "instruments": [
+          "c-sar"
+        ],
         "constellation": "sentinel_1",
         "platform": "sentinel_1"
       },
       "extensions": {
+        "cloud_cover": 0.0,
         "eo": {
           "bands": [
-              {
-                "name": "Gamma0_VH_db",
-                "common_name": "gamma0_VH",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": 0
-              },
-              {
-                "name": "Gamma0_VV_db",
-                "common_name": "gamma0_VV",
-                "units": "1",
-                "dtype": "uint16",
-                "nodata": 0
-              }
+            {
+              "name": "Gamma0_VH_db",
+              "common_name": "gamma0_VH",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": 0
+            },
+            {
+              "name": "Gamma0_VV_db",
+              "common_name": "gamma0_VV",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": 0
+            }
           ]
         },
         "product_definition": {
           "metadata_type": "eo3",
           "metadata": {
-            "product":{
-              "name":"sentinel_1"
+            "product": {
+              "name": "sentinel_1"
             }
           }
         }
