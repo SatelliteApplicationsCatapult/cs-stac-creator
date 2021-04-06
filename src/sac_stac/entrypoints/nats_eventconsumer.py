@@ -18,8 +18,7 @@ S3_REGION = get_s3_configuration()["region"]
 S3_ENDPOINT = get_s3_configuration()["endpoint"]
 
 
-async def run(loop):
-    nc = NATS()
+async def run(nc, repo, loop):
 
     async def closed_cb():
         logger.info("Connection to NATS is closed.")
@@ -45,10 +44,6 @@ async def run(loop):
         }
         message_type = subject.split('.')[1]
         if message_type in r.keys():
-            s3 = S3(key=S3_ACCESS_KEY_ID, secret=S3_SECRET_ACCESS_KEY,
-                    s3_endpoint=S3_ENDPOINT, region_name=S3_REGION)
-            repo = repository.S3Repository(s3)
-
             for k, v in r.items():
                 if k in subject:
                     stac_type, key = v(repo, data)
@@ -70,8 +65,14 @@ async def run(loop):
 
 
 if __name__ == '__main__':
+
+    s3 = S3(key=S3_ACCESS_KEY_ID, secret=S3_SECRET_ACCESS_KEY,
+            s3_endpoint=S3_ENDPOINT, region_name=S3_REGION)
+    repo = repository.S3Repository(s3)
+    nats_client = NATS()
+
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(run(loop))
+    loop.run_until_complete(run(nats_client, repo, loop))
     try:
         loop.run_forever()
     finally:

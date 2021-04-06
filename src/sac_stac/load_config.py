@@ -13,7 +13,7 @@ config = config_file
 
 
 def get_nats_uri():
-    host = os.environ.get("NATS_HOST", "localhost")
+    host = os.environ.get("NATS_HOST", "127.0.0.1")
     return f"nats://{host}:4222"
 
 
