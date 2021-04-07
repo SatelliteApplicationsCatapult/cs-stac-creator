@@ -3,9 +3,6 @@ name: CI to Docker hub
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches:
-      - main
 
 jobs:
   main:
