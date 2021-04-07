@@ -28,7 +28,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: satapps/cs-stac-indexer:latest
+          tags: satapps/cs-stac-creator:$(git rev-parse --short HEAD)
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
