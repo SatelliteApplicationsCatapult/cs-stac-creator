@@ -3,6 +3,7 @@ import os
 import shutil
 from pathlib import Path
 
+import pytest
 from nats.aio.client import Client as NATS
 from moto.s3 import mock_s3
 from sac_stac.adapters import repository
@@ -65,15 +66,12 @@ def test_new_stac_collection():
         initialise_s3_bucket(sensor_key, s3.s3_resource, bucket)
         repo = repository.S3Repository(s3)
 
-        event_loop = asyncio.get_event_loop()
+        event_loop = asyncio.new_event_loop()
         nats_client = NATS()
 
         event_loop.run_until_complete(run(nats_client, repo, event_loop))
         collection_key = event_loop.run_until_complete(client(nats_client, sensor_key))
         event_loop.run_until_complete(close_nats(nats_client, event_loop))
-
-        event_loop.run_forever()
-        event_loop.close()
 
         assert collection_key == "stac_catalogs/cs_stac/landsat_5/collection.json"
 
@@ -117,15 +115,12 @@ def test_new_stac_item():
 
         repo = repository.S3Repository(s3)
 
-        event_loop = asyncio.get_event_loop()
+        event_loop = asyncio.new_event_loop()
         nats_client = NATS()
 
         event_loop.run_until_complete(run(nats_client, repo, event_loop))
         item_key = event_loop.run_until_complete(client_item(nats_client, acquisition_key))
         event_loop.run_until_complete(close_nats(nats_client, event_loop))
-
-        event_loop.run_forever()
-        event_loop.close()
 
         assert item_key == 'stac_catalogs/cs_stac/landsat_5/LT05_L1TP_075073_19920125/LT05_L1TP_075073_19920125.json'
 
