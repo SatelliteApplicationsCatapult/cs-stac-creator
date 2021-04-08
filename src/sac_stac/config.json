@@ -749,6 +749,58 @@
           }
         }
       }
+    },
+    {
+      "id": "landsat_5_wofs",
+      "title": "USGS Landsat-5 WOFS Datasets",
+      "description":"A collection of Landsat-5 Water Observations from Space (WOFS) datasets.",
+      "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/landsat_5_water/",
+      "formatting": {
+        "date": {
+          "regex": "(\\d{8})",
+          "format": "%Y%m%d"
+        }
+      },
+      "providers": [
+        {
+          "name": "USGS",
+          "roles": ["producer", "licensor"],
+          "url": "https://www.esa.int/"
+        },
+        {
+          "name": "Satellite Applications Catapult",
+          "roles": ["processor", "host"],
+          "url": "https://sa.catapult.org.uk/"
+        }
+      ],
+      "common_metadata": {
+        "gsd": 30,
+        "instruments": ["tm"],
+        "constellation": "landsat_5_wofs",
+        "platform": "landsat_5_wofs"
+      },
+      "extensions": {
+        "eo": {
+          "cloud_cover": 0.0,
+          "bands": [
+              {
+                "name": "_water",
+                "common_name": "water_wofs",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": -9999
+              }
+			]
+        },
+        "product_definition": {
+          "metadata_type": "eo3",
+          "metadata": {
+            "product":{
+              "name":"landsat_5_wofs"
+            }
+          }
+        }
+      }
     }
   ]
 }
