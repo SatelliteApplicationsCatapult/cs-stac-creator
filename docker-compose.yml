@@ -15,9 +15,6 @@ services:
     volumes:
       - ./src:/src
       - ./tests:/tests
-    entrypoint:
-      - python
-      - /src/sac_stac/entrypoints/nats_eventconsumer.py
 
   nats:
     image: nats:alpine
