@@ -1075,6 +1075,65 @@
           }
         }
       }
+    },
+    {
+      "id": "landsat_8_mlwater",
+      "title": "USGS Landsat-8 MLWater Datasets",
+      "description":"A collection of Landsat-8 machine learning generated water mask datasets.",
+      "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/landsat_8_mlwater/",
+      "formatting": {
+        "date": {
+          "regex": "(\\d{8})",
+          "format": "%Y%m%d"
+        }
+      },
+      "providers": [
+        {
+          "name": "USGS",
+          "roles": ["producer", "licensor"],
+          "url": "https://www.esa.int/"
+        },
+        {
+          "name": "Satellite Applications Catapult",
+          "roles": ["processor", "host"],
+          "url": "https://sa.catapult.org.uk/"
+        }
+      ],
+      "common_metadata": {
+        "gsd": 30,
+        "instruments": ["oli"],
+        "constellation": "landsat_8_mlwater",
+        "platform": "landsat_8_mlwater"
+      },
+      "extensions": {
+        "eo": {
+          "cloud_cover": 0.0,
+          "bands": [
+              {
+                "name": "_watermask",
+                "common_name": "water_ml",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": -9999
+              },
+              {
+                "name": "_waterprob",
+                "common_name": "waterprob_ml",
+                "units": "1",
+                "dtype": "uint16",
+                "nodata": -9999
+              }
+			]
+        },
+        "product_definition": {
+          "metadata_type": "eo3",
+          "metadata": {
+            "product":{
+              "name":"landsat_8_mlwater"
+            }
+          }
+        }
+      }
     }
   ]
 }
