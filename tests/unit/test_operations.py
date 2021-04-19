@@ -16,6 +16,15 @@ def test_obtain_date_from_filename_sentinel():
     assert date == datetime(2015, 10, 22, 22, 21, 2)
 
 
+def test_obtain_date_from_filename_spot():
+    date = obtain_date_from_filename(
+        file='public-eo-data/common_sensing/fiji/SPOT1_MS/14343858804292237181X-Ortho_cog/'
+             '14343858804292237181X-Ortho_cog_XS1.tif',
+        regex=r'^.{7}(\d{12})',
+        date_format='%y%m%d%H%M%S')
+    assert date == datetime(1988, 4, 29, 22, 37, 18)
+
+
 def test_obtain_date_from_filename_s3_url():
     date = obtain_date_from_filename(
         file='s3://public-eo-data/common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KBU/'

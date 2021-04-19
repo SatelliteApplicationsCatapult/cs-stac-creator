@@ -33,7 +33,7 @@ def obtain_date_from_filename(file: str, regex: str, date_format: str) -> dateti
     date = None
 
     if match_date:
-        date = datetime.strptime(match_date.group(0), date_format)
+        date = datetime.strptime(match_date.group(1), date_format)
 
     return date
 
