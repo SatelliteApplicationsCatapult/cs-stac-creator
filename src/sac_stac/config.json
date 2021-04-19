@@ -1332,6 +1332,80 @@
           }
         }
       }
+    },
+    {
+      "id": "SPOT1_MS",
+      "title": "",
+      "description": "",
+      "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT1_MS/",
+      "formatting": {
+        "date": {
+          "regex": "^.{7}(\\d{12})",
+          "format": "%y%m%d%H%M%S"
+        }
+      },
+      "providers": [
+        {
+          "name": "",
+          "roles": [
+            "producer",
+            "licensor"
+          ],
+          "url": ""
+        },
+        {
+          "name": "Satellite Applications Catapult",
+          "roles": [
+            "processor",
+            "host"
+          ],
+          "url": "https://sa.catapult.org.uk/"
+        }
+      ],
+      "common_metadata": {
+        "gsd": 20,
+        "instruments": [
+          "HRV"
+        ],
+        "constellation": "SPOT1_MS",
+        "platform": "SPOT1_MS"
+      },
+      "extensions": {
+        "cloud_cover": 0.0,
+        "eo": {
+          "bands": [
+            {
+              "name": "XS1",
+              "common_name": "green",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "XS2",
+              "common_name": "red",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "XS3",
+              "common_name": "NIR",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            }
+          ]
+        },
+        "product_definition": {
+          "metadata_type": "eo3",
+          "metadata": {
+            "product": {
+              "name": "SPOT1_MS"
+            }
+          }
+        }
+      }
     }
   ]
 }
