@@ -65,8 +65,10 @@ jobs:
       - name: Update appVersion
         run: |
           CHART_DIR=./charts/stac-creator
-          mv ${CHART_DIR}/Chart.yaml ${CHART_DIR}/Chart.old.yaml &&
-          cat ${CHART_DIR}/Chart.old.yaml | grep -v appVersion > ${CHART_DIR}/Chart.yaml &&
+
+          mv ${CHART_DIR}/Chart.yaml ${CHART_DIR}/Chart.tmp.yaml &&
+          cat ${CHART_DIR}/Chart.tmp.yaml | grep -v appVersion > ${CHART_DIR}/Chart.yaml &&
+          rm ${CHART_DIR}/Chart.tmp.yaml &&
           echo -e "\r\nappVersion: ${{ steps.sha.outputs.sha_short }}\r\n" >> ${CHART_DIR}/Chart.yaml &&
           cat ${CHART_DIR}/Chart.yaml
 
