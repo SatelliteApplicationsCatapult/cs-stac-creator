@@ -15,14 +15,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Fetch history
-        run: git fetch --prune --unshallow
+        with:
+          fetch-depth: 0
 
       - name: Run chart-testing (lint)
         uses: helm/chart-testing-action@v2.0.1
         with:
-          config: .github/ct-lint.yaml
           command: lint
 
   validation:
@@ -30,7 +28,11 @@ jobs:
     needs:
       - linting
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
       - name: Kubernetes Validator
         uses: desaintmartin/helm-kubeval-action@master
         with:
@@ -42,12 +44,27 @@ jobs:
       - validation
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Obtain SHA
+        id: sha
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - name: Update appVersion
+        run: |
+          CHART_DIR=./charts/stac-creator
+          mv ${CHART_DIR}/Chart.yaml ${CHART_DIR}/Chart.old.yaml &&
+          cat ${CHART_DIR}/Chart.old.yaml | grep -v appVersion > ${CHART_DIR}/Chart.yaml &&
+          echo -e "\r\nappVersion: ${{ steps.sha.outputs.sha_short }}\r\n" >> ${CHART_DIR}/Chart.yaml &&
+          cat ${CHART_DIR}/Chart.yaml
+
       - name: Generate documentation
         run: |
           curl --silent --show-error --fail --location --output /tmp/helm-docs.tar.gz https://github.com/norwoodj/helm-docs/releases/download/v0.13.0/helm-docs_0.13.0_Linux_x86_64.tar.gz
