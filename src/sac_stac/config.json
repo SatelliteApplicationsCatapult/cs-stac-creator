@@ -1716,6 +1716,246 @@
           }
         }
       }
+    },
+    {
+      "id": "SPOT2_PAN",
+      "title": "",
+      "description": "",
+      "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT2_PAN/",
+      "formatting": {
+        "date": {
+          "regex": "^.{7}(\\d{12})",
+          "format": "%y%m%d%H%M%S"
+        }
+      },
+      "providers": [
+        {
+          "name": "",
+          "roles": [
+            "producer",
+            "licensor"
+          ],
+          "url": ""
+        },
+        {
+          "name": "Satellite Applications Catapult",
+          "roles": [
+            "processor",
+            "host"
+          ],
+          "url": "https://sa.catapult.org.uk/"
+        }
+      ],
+      "common_metadata": {
+        "gsd": 20,
+        "instruments": [
+          "HRV"
+        ],
+        "constellation": "SPOT2_PAN",
+        "platform": "SPOT2_PAN"
+      },
+      "extensions": {
+        "cloud_cover": 0.0,
+        "eo": {
+          "bands": [
+            {
+              "name": "PAN",
+              "common_name": "pan",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            }
+          ]
+        },
+        "product_definition": {
+          "metadata_type": "eo3",
+          "metadata": {
+            "product": {
+              "name": "SPOT2_PAN"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "SPOT3_PAN",
+      "title": "",
+      "description": "",
+      "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT3_PAN/",
+      "formatting": {
+        "date": {
+          "regex": "^.{7}(\\d{12})",
+          "format": "%y%m%d%H%M%S"
+        }
+      },
+      "providers": [
+        {
+          "name": "",
+          "roles": [
+            "producer",
+            "licensor"
+          ],
+          "url": ""
+        },
+        {
+          "name": "Satellite Applications Catapult",
+          "roles": [
+            "processor",
+            "host"
+          ],
+          "url": "https://sa.catapult.org.uk/"
+        }
+      ],
+      "common_metadata": {
+        "gsd": 20,
+        "instruments": [
+          "HRV"
+        ],
+        "constellation": "SPOT3_PAN",
+        "platform": "SPOT3_PAN"
+      },
+      "extensions": {
+        "cloud_cover": 0.0,
+        "eo": {
+          "bands": [
+            {
+              "name": "PAN",
+              "common_name": "pan",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            }
+          ]
+        },
+        "product_definition": {
+          "metadata_type": "eo3",
+          "metadata": {
+            "product": {
+              "name": "SPOT3_PAN"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "SPOT4_PAN",
+      "title": "",
+      "description": "",
+      "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT4_PAN/",
+      "formatting": {
+        "date": {
+          "regex": "^.{7}(\\d{12})",
+          "format": "%y%m%d%H%M%S"
+        }
+      },
+      "providers": [
+        {
+          "name": "",
+          "roles": [
+            "producer",
+            "licensor"
+          ],
+          "url": ""
+        },
+        {
+          "name": "Satellite Applications Catapult",
+          "roles": [
+            "processor",
+            "host"
+          ],
+          "url": "https://sa.catapult.org.uk/"
+        }
+      ],
+      "common_metadata": {
+        "gsd": 20,
+        "instruments": [
+          "HRV"
+        ],
+        "constellation": "SPOT4_PAN",
+        "platform": "SPOT4_PAN"
+      },
+      "extensions": {
+        "cloud_cover": 0.0,
+        "eo": {
+          "bands": [
+            {
+              "name": "PAN",
+              "common_name": "pan",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            }
+          ]
+        },
+        "product_definition": {
+          "metadata_type": "eo3",
+          "metadata": {
+            "product": {
+              "name": "SPOT4_PAN"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "SPOT5_PAN",
+      "title": "",
+      "description": "",
+      "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT5_PAN/",
+      "formatting": {
+        "date": {
+          "regex": "^.{7}(\\d{12})",
+          "format": "%y%m%d%H%M%S"
+        }
+      },
+      "providers": [
+        {
+          "name": "",
+          "roles": [
+            "producer",
+            "licensor"
+          ],
+          "url": ""
+        },
+        {
+          "name": "Satellite Applications Catapult",
+          "roles": [
+            "processor",
+            "host"
+          ],
+          "url": "https://sa.catapult.org.uk/"
+        }
+      ],
+      "common_metadata": {
+        "gsd": 20,
+        "instruments": [
+          "HRV"
+        ],
+        "constellation": "SPOT5_PAN",
+        "platform": "SPOT5_PAN"
+      },
+      "extensions": {
+        "cloud_cover": 0.0,
+        "eo": {
+          "bands": [
+            {
+              "name": "PAN",
+              "common_name": "pan",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            }
+          ]
+        },
+        "product_definition": {
+          "metadata_type": "eo3",
+          "metadata": {
+            "product": {
+              "name": "SPOT5_PAN"
+            }
+          }
+        }
+      }
     }
   ]
 }
