@@ -1390,7 +1390,7 @@
             },
             {
               "name": "XS3",
-              "common_name": "NIR",
+              "common_name": "nir",
               "units": "1",
               "dtype": "uint16",
               "nodata": -9999
