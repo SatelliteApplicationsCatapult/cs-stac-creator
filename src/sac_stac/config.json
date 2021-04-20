@@ -1406,6 +1406,316 @@
           }
         }
       }
+    },
+    {
+      "id": "SPOT2_MS",
+      "title": "",
+      "description": "",
+      "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT2_MS/",
+      "formatting": {
+        "date": {
+          "regex": "^.{7}(\\d{12})",
+          "format": "%y%m%d%H%M%S"
+        }
+      },
+      "providers": [
+        {
+          "name": "",
+          "roles": [
+            "producer",
+            "licensor"
+          ],
+          "url": ""
+        },
+        {
+          "name": "Satellite Applications Catapult",
+          "roles": [
+            "processor",
+            "host"
+          ],
+          "url": "https://sa.catapult.org.uk/"
+        }
+      ],
+      "common_metadata": {
+        "gsd": 20,
+        "instruments": [
+          "HRV"
+        ],
+        "constellation": "SPOT2_MS",
+        "platform": "SPOT2_MS"
+      },
+      "extensions": {
+        "cloud_cover": 0.0,
+        "eo": {
+          "bands": [
+            {
+              "name": "XS1",
+              "common_name": "green",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "XS2",
+              "common_name": "red",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "XS3",
+              "common_name": "nir",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            }
+          ]
+        },
+        "product_definition": {
+          "metadata_type": "eo3",
+          "metadata": {
+            "product": {
+              "name": "SPOT2_MS"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "SPOT3_MS",
+      "title": "",
+      "description": "",
+      "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT3_MS/",
+      "formatting": {
+        "date": {
+          "regex": "^.{7}(\\d{12})",
+          "format": "%y%m%d%H%M%S"
+        }
+      },
+      "providers": [
+        {
+          "name": "",
+          "roles": [
+            "producer",
+            "licensor"
+          ],
+          "url": ""
+        },
+        {
+          "name": "Satellite Applications Catapult",
+          "roles": [
+            "processor",
+            "host"
+          ],
+          "url": "https://sa.catapult.org.uk/"
+        }
+      ],
+      "common_metadata": {
+        "gsd": 20,
+        "instruments": [
+          "HRV"
+        ],
+        "constellation": "SPOT3_MS",
+        "platform": "SPOT3_MS"
+      },
+      "extensions": {
+        "cloud_cover": 0.0,
+        "eo": {
+          "bands": [
+            {
+              "name": "XS1",
+              "common_name": "green",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "XS2",
+              "common_name": "red",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "XS3",
+              "common_name": "nir",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            }
+          ]
+        },
+        "product_definition": {
+          "metadata_type": "eo3",
+          "metadata": {
+            "product": {
+              "name": "SPOT3_MS"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "SPOT4_MS",
+      "title": "",
+      "description": "",
+      "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT4_MS/",
+      "formatting": {
+        "date": {
+          "regex": "^.{7}(\\d{12})",
+          "format": "%y%m%d%H%M%S"
+        }
+      },
+      "providers": [
+        {
+          "name": "",
+          "roles": [
+            "producer",
+            "licensor"
+          ],
+          "url": ""
+        },
+        {
+          "name": "Satellite Applications Catapult",
+          "roles": [
+            "processor",
+            "host"
+          ],
+          "url": "https://sa.catapult.org.uk/"
+        }
+      ],
+      "common_metadata": {
+        "gsd": 20,
+        "instruments": [
+          "HRV"
+        ],
+        "constellation": "SPOT4_MS",
+        "platform": "SPOT4_MS"
+      },
+      "extensions": {
+        "cloud_cover": 0.0,
+        "eo": {
+          "bands": [
+            {
+              "name": "XS1",
+              "common_name": "green",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "XS2",
+              "common_name": "red",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "XS3",
+              "common_name": "nir",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "XS4",
+              "common_name": "swir16",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            }
+          ]
+        },
+        "product_definition": {
+          "metadata_type": "eo3",
+          "metadata": {
+            "product": {
+              "name": "SPOT4_MS"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "SPOT5_MS",
+      "title": "",
+      "description": "",
+      "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT5_MS/",
+      "formatting": {
+        "date": {
+          "regex": "^.{7}(\\d{12})",
+          "format": "%y%m%d%H%M%S"
+        }
+      },
+      "providers": [
+        {
+          "name": "",
+          "roles": [
+            "producer",
+            "licensor"
+          ],
+          "url": ""
+        },
+        {
+          "name": "Satellite Applications Catapult",
+          "roles": [
+            "processor",
+            "host"
+          ],
+          "url": "https://sa.catapult.org.uk/"
+        }
+      ],
+      "common_metadata": {
+        "gsd": 20,
+        "instruments": [
+          "HRV"
+        ],
+        "constellation": "SPOT5_MS",
+        "platform": "SPOT5_MS"
+      },
+      "extensions": {
+        "cloud_cover": 0.0,
+        "eo": {
+          "bands": [
+            {
+              "name": "XS1",
+              "common_name": "green",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "XS2",
+              "common_name": "red",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "XS3",
+              "common_name": "nir",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            },
+            {
+              "name": "XS4",
+              "common_name": "swir16",
+              "units": "1",
+              "dtype": "uint16",
+              "nodata": -9999
+            }
+          ]
+        },
+        "product_definition": {
+          "metadata_type": "eo3",
+          "metadata": {
+            "product": {
+              "name": "SPOT5_MS"
+            }
+          }
+        }
+      }
     }
   ]
 }
