@@ -1,4 +1,4 @@
-name: Chart Linting
+name: Chart Linter and Validation
 
 on:
   pull_request:
@@ -23,3 +23,18 @@ jobs:
 
       - name: Run chart-testing (lint)
         run: ct lint --all --target-branch main
+
+  validation:
+    runs-on: ubuntu-latest
+    needs:
+      - linting
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Kubernetes Validator
+        uses: desaintmartin/helm-kubeval-action@master
+        with:
+          path: charts
