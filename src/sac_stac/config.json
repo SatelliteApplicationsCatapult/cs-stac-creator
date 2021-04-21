@@ -1335,8 +1335,8 @@
     },
     {
       "id": "SPOT1_MS",
-      "title": "",
-      "description": "",
+      "title": "SPOT1_MS datasets",
+      "description": "A collection of SPOT1_MS datasets. Procured from Airbus, prepared by GRID-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT1_MS/",
       "formatting": {
         "date": {
@@ -1346,17 +1346,23 @@
       },
       "providers": [
         {
-          "name": "",
+          "name": "Airbus Defence & Space",
           "roles": [
             "producer",
             "licensor"
           ],
-          "url": ""
+          "url": "https://www.airbus.com/space.html"
+        },
+        {
+          "name": "GRID-Geneva",
+          "roles": [
+            "processor"
+          ],
+          "url": "https://unepgrid.ch/en"
         },
         {
           "name": "Satellite Applications Catapult",
           "roles": [
-            "processor",
             "host"
           ],
           "url": "https://sa.catapult.org.uk/"
@@ -1409,8 +1415,8 @@
     },
     {
       "id": "SPOT2_MS",
-      "title": "",
-      "description": "",
+      "title": "SPOT2_MS datasets",
+      "description": "A collection of SPOT2_MS datasets. Procured from Airbus, prepared by GRID-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT2_MS/",
       "formatting": {
         "date": {
@@ -1420,17 +1426,23 @@
       },
       "providers": [
         {
-          "name": "",
+          "name": "Airbus Defence & Space",
           "roles": [
             "producer",
             "licensor"
           ],
-          "url": ""
+          "url": "https://www.airbus.com/space.html"
+        },
+        {
+          "name": "GRID-Geneva",
+          "roles": [
+            "processor"
+          ],
+          "url": "https://unepgrid.ch/en"
         },
         {
           "name": "Satellite Applications Catapult",
           "roles": [
-            "processor",
             "host"
           ],
           "url": "https://sa.catapult.org.uk/"
@@ -1483,8 +1495,8 @@
     },
     {
       "id": "SPOT3_MS",
-      "title": "",
-      "description": "",
+      "title": "SPOT3_MS datasets",
+      "description": "A collection of SPOT3_MS datasets. Procured from Airbus, prepared by GRID-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT3_MS/",
       "formatting": {
         "date": {
@@ -1494,17 +1506,23 @@
       },
       "providers": [
         {
-          "name": "",
+          "name": "Airbus Defence & Space",
           "roles": [
             "producer",
             "licensor"
           ],
-          "url": ""
+          "url": "https://www.airbus.com/space.html"
+        },
+        {
+          "name": "GRID-Geneva",
+          "roles": [
+            "processor"
+          ],
+          "url": "https://unepgrid.ch/en"
         },
         {
           "name": "Satellite Applications Catapult",
           "roles": [
-            "processor",
             "host"
           ],
           "url": "https://sa.catapult.org.uk/"
@@ -1557,8 +1575,8 @@
     },
     {
       "id": "SPOT4_MS",
-      "title": "",
-      "description": "",
+      "title": "SPOT4_MS datasets",
+      "description": "A collection of SPOT4_MS datasets. Procured from Airbus, prepared by GRID-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT4_MS/",
       "formatting": {
         "date": {
@@ -1568,17 +1586,23 @@
       },
       "providers": [
         {
-          "name": "",
+          "name": "Airbus Defence & Space",
           "roles": [
             "producer",
             "licensor"
           ],
-          "url": ""
+          "url": "https://www.airbus.com/space.html"
+        },
+        {
+          "name": "GRID-Geneva",
+          "roles": [
+            "processor"
+          ],
+          "url": "https://unepgrid.ch/en"
         },
         {
           "name": "Satellite Applications Catapult",
           "roles": [
-            "processor",
             "host"
           ],
           "url": "https://sa.catapult.org.uk/"
@@ -1638,8 +1662,8 @@
     },
     {
       "id": "SPOT5_MS",
-      "title": "",
-      "description": "",
+      "title": "SPOT5_MS datasets",
+      "description": "A collection of SPOT5_MS datasets. Procured from Airbus, prepared by GRID-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT5_MS/",
       "formatting": {
         "date": {
@@ -1649,17 +1673,23 @@
       },
       "providers": [
         {
-          "name": "",
+          "name": "Airbus Defence & Space",
           "roles": [
             "producer",
             "licensor"
           ],
-          "url": ""
+          "url": "https://www.airbus.com/space.html"
+        },
+        {
+          "name": "GRID-Geneva",
+          "roles": [
+            "processor"
+          ],
+          "url": "https://unepgrid.ch/en"
         },
         {
           "name": "Satellite Applications Catapult",
           "roles": [
-            "processor",
             "host"
           ],
           "url": "https://sa.catapult.org.uk/"
@@ -1719,8 +1749,8 @@
     },
     {
       "id": "SPOT2_PAN",
-      "title": "",
-      "description": "",
+      "title": "SPOT2_PAN datasets",
+      "description": "A collection of SPOT2_PAN datasets. Procured from Airbus, prepared by GRID-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT2_PAN/",
       "formatting": {
         "date": {
@@ -1730,17 +1760,23 @@
       },
       "providers": [
         {
-          "name": "",
+          "name": "Airbus Defence & Space",
           "roles": [
             "producer",
             "licensor"
           ],
-          "url": ""
+          "url": "https://www.airbus.com/space.html"
+        },
+        {
+          "name": "GRID-Geneva",
+          "roles": [
+            "processor"
+          ],
+          "url": "https://unepgrid.ch/en"
         },
         {
           "name": "Satellite Applications Catapult",
           "roles": [
-            "processor",
             "host"
           ],
           "url": "https://sa.catapult.org.uk/"
@@ -1779,8 +1815,8 @@
     },
     {
       "id": "SPOT3_PAN",
-      "title": "",
-      "description": "",
+      "title": "SPOT3_PAN datasets",
+      "description": "A collection of SPOT3_PAN datasets. Procured from Airbus, prepared by GRID-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT3_PAN/",
       "formatting": {
         "date": {
@@ -1790,17 +1826,23 @@
       },
       "providers": [
         {
-          "name": "",
+          "name": "Airbus Defence & Space",
           "roles": [
             "producer",
             "licensor"
           ],
-          "url": ""
+          "url": "https://www.airbus.com/space.html"
+        },
+        {
+          "name": "GRID-Geneva",
+          "roles": [
+            "processor"
+          ],
+          "url": "https://unepgrid.ch/en"
         },
         {
           "name": "Satellite Applications Catapult",
           "roles": [
-            "processor",
             "host"
           ],
           "url": "https://sa.catapult.org.uk/"
@@ -1839,8 +1881,8 @@
     },
     {
       "id": "SPOT4_PAN",
-      "title": "",
-      "description": "",
+      "title": "SPOT4_PAN datasets",
+      "description": "A collection of SPOT4_PAN datasets. Procured from Airbus, prepared by GRID-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT4_PAN/",
       "formatting": {
         "date": {
@@ -1850,17 +1892,23 @@
       },
       "providers": [
         {
-          "name": "",
+          "name": "Airbus Defence & Space",
           "roles": [
             "producer",
             "licensor"
           ],
-          "url": ""
+          "url": "https://www.airbus.com/space.html"
+        },
+        {
+          "name": "GRID-Geneva",
+          "roles": [
+            "processor"
+          ],
+          "url": "https://unepgrid.ch/en"
         },
         {
           "name": "Satellite Applications Catapult",
           "roles": [
-            "processor",
             "host"
           ],
           "url": "https://sa.catapult.org.uk/"
@@ -1899,8 +1947,8 @@
     },
     {
       "id": "SPOT5_PAN",
-      "title": "",
-      "description": "",
+      "title": "SPOT5_PAN datasets",
+      "description": "A collection of SPOT5_PAN datasets. Procured from Airbus, prepared by GRID-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT5_PAN/",
       "formatting": {
         "date": {
@@ -1910,17 +1958,23 @@
       },
       "providers": [
         {
-          "name": "",
+          "name": "Airbus Defence & Space",
           "roles": [
             "producer",
             "licensor"
           ],
-          "url": ""
+          "url": "https://www.airbus.com/space.html"
+        },
+        {
+          "name": "GRID-Geneva",
+          "roles": [
+            "processor"
+          ],
+          "url": "https://unepgrid.ch/en"
         },
         {
           "name": "Satellite Applications Catapult",
           "roles": [
-            "processor",
             "host"
           ],
           "url": "https://sa.catapult.org.uk/"
