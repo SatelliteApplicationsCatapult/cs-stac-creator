@@ -1336,7 +1336,7 @@
     {
       "id": "SPOT1_MS",
       "title": "SPOT1_MS datasets",
-      "description": "A collection of SPOT1_MS datasets. Procured from Airbus, prepared by GRID-Geneva.",
+      "description": "A collection of SPOT1_MS datasets. Procured from Airbus, prepared by UNEP-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT1_MS/",
       "formatting": {
         "date": {
@@ -1354,7 +1354,7 @@
           "url": "https://www.airbus.com/space.html"
         },
         {
-          "name": "GRID-Geneva",
+          "name": "UNEP-Geneva",
           "roles": [
             "processor"
           ],
@@ -1416,7 +1416,7 @@
     {
       "id": "SPOT2_MS",
       "title": "SPOT2_MS datasets",
-      "description": "A collection of SPOT2_MS datasets. Procured from Airbus, prepared by GRID-Geneva.",
+      "description": "A collection of SPOT2_MS datasets. Procured from Airbus, prepared by UNEP-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT2_MS/",
       "formatting": {
         "date": {
@@ -1434,7 +1434,7 @@
           "url": "https://www.airbus.com/space.html"
         },
         {
-          "name": "GRID-Geneva",
+          "name": "UNEP-Geneva",
           "roles": [
             "processor"
           ],
@@ -1496,7 +1496,7 @@
     {
       "id": "SPOT3_MS",
       "title": "SPOT3_MS datasets",
-      "description": "A collection of SPOT3_MS datasets. Procured from Airbus, prepared by GRID-Geneva.",
+      "description": "A collection of SPOT3_MS datasets. Procured from Airbus, prepared by UNEP-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT3_MS/",
       "formatting": {
         "date": {
@@ -1514,7 +1514,7 @@
           "url": "https://www.airbus.com/space.html"
         },
         {
-          "name": "GRID-Geneva",
+          "name": "UNEP-Geneva",
           "roles": [
             "processor"
           ],
@@ -1576,7 +1576,7 @@
     {
       "id": "SPOT4_MS",
       "title": "SPOT4_MS datasets",
-      "description": "A collection of SPOT4_MS datasets. Procured from Airbus, prepared by GRID-Geneva.",
+      "description": "A collection of SPOT4_MS datasets. Procured from Airbus, prepared by UNEP-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT4_MS/",
       "formatting": {
         "date": {
@@ -1594,7 +1594,7 @@
           "url": "https://www.airbus.com/space.html"
         },
         {
-          "name": "GRID-Geneva",
+          "name": "UNEP-Geneva",
           "roles": [
             "processor"
           ],
@@ -1663,7 +1663,7 @@
     {
       "id": "SPOT5_MS",
       "title": "SPOT5_MS datasets",
-      "description": "A collection of SPOT5_MS datasets. Procured from Airbus, prepared by GRID-Geneva.",
+      "description": "A collection of SPOT5_MS datasets. Procured from Airbus, prepared by UNEP-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT5_MS/",
       "formatting": {
         "date": {
@@ -1681,7 +1681,7 @@
           "url": "https://www.airbus.com/space.html"
         },
         {
-          "name": "GRID-Geneva",
+          "name": "UNEP-Geneva",
           "roles": [
             "processor"
           ],
@@ -1750,7 +1750,7 @@
     {
       "id": "SPOT2_PAN",
       "title": "SPOT2_PAN datasets",
-      "description": "A collection of SPOT2_PAN datasets. Procured from Airbus, prepared by GRID-Geneva.",
+      "description": "A collection of SPOT2_PAN datasets. Procured from Airbus, prepared by UNEP-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT2_PAN/",
       "formatting": {
         "date": {
@@ -1768,7 +1768,7 @@
           "url": "https://www.airbus.com/space.html"
         },
         {
-          "name": "GRID-Geneva",
+          "name": "UNEP-Geneva",
           "roles": [
             "processor"
           ],
@@ -1816,7 +1816,7 @@
     {
       "id": "SPOT3_PAN",
       "title": "SPOT3_PAN datasets",
-      "description": "A collection of SPOT3_PAN datasets. Procured from Airbus, prepared by GRID-Geneva.",
+      "description": "A collection of SPOT3_PAN datasets. Procured from Airbus, prepared by UNEP-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT3_PAN/",
       "formatting": {
         "date": {
@@ -1834,7 +1834,7 @@
           "url": "https://www.airbus.com/space.html"
         },
         {
-          "name": "GRID-Geneva",
+          "name": "UNEP-Geneva",
           "roles": [
             "processor"
           ],
@@ -1882,7 +1882,7 @@
     {
       "id": "SPOT4_PAN",
       "title": "SPOT4_PAN datasets",
-      "description": "A collection of SPOT4_PAN datasets. Procured from Airbus, prepared by GRID-Geneva.",
+      "description": "A collection of SPOT4_PAN datasets. Procured from Airbus, prepared by UNEP-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT4_PAN/",
       "formatting": {
         "date": {
@@ -1900,7 +1900,7 @@
           "url": "https://www.airbus.com/space.html"
         },
         {
-          "name": "GRID-Geneva",
+          "name": "UNEP-Geneva",
           "roles": [
             "processor"
           ],
@@ -1948,7 +1948,7 @@
     {
       "id": "SPOT5_PAN",
       "title": "SPOT5_PAN datasets",
-      "description": "A collection of SPOT5_PAN datasets. Procured from Airbus, prepared by GRID-Geneva.",
+      "description": "A collection of SPOT5_PAN datasets. Procured from Airbus, prepared by UNEP-Geneva.",
       "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/common_sensing/fiji/SPOT5_PAN/",
       "formatting": {
         "date": {
@@ -1966,7 +1966,7 @@
           "url": "https://www.airbus.com/space.html"
         },
         {
-          "name": "GRID-Geneva",
+          "name": "UNEP-Geneva",
           "roles": [
             "processor"
           ],
