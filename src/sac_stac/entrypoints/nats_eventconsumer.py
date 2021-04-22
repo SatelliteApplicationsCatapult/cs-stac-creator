@@ -47,10 +47,11 @@ async def run(nc, repo, loop):
             for k, v in r.items():
                 if k in subject:
                     stac_type, key = v(repo, data)
-                    subj = f'stac_indexer.{stac_type}'
-                    msg = key.encode()
-                    await nc.publish(subj, msg)
-                    logger.info(f"Published a message on '{subj}': {msg.decode()}")
+                    if key:
+                        subj = f'stac_indexer.{stac_type}'
+                        msg = key.encode()
+                        await nc.publish(subj, msg)
+                        logger.info(f"Published a message on '{subj}': {msg.decode()}")
 
     await nc.subscribe("stac_creator.*", cb=message_handler)
 
