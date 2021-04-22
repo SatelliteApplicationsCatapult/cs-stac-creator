@@ -78,3 +78,33 @@ def test_add_stac_item():
     finally:
         shutil.rmtree(f'tests/data/{acquisition_key}')
         os.environ.pop("TEST_ENV")
+
+
+@mock_s3
+def test_add_stac_item_with_empty_bands():
+    sensor_name = 'landsat_5'
+    sensor_key = f'common_sensing/fiji/{sensor_name}/'
+    acquisition_key = f'{sensor_key}LT05_L1TP_075073_19920125/'
+    try:
+        os.environ["TEST_ENV"] = "Yes"
+
+        bucket_name = 'public-eo-data'
+        s3 = S3(key=None, secret=None, s3_endpoint=None, region_name='us-east-1')
+
+        s3.s3_resource.create_bucket(Bucket=bucket_name)
+        for file in Path(f'tests/data/{sensor_key}_no_bands').glob('**/*.*'):
+            s3.s3_resource.Bucket(bucket_name).upload_file(
+                Filename=str(file),
+                Key=f"{sensor_key}{file.parent.stem}/{file.name}"
+            )
+
+        add_stac_s3(sensor_name, s3.s3_resource, bucket_name)
+
+        repo = repository.S3Repository(s3)
+
+        stac_type, item_key = services.add_stac_item(repo=repo, acquisition_key=acquisition_key)
+
+        assert stac_type == 'item'
+        assert not item_key
+    finally:
+        os.environ.pop("TEST_ENV")

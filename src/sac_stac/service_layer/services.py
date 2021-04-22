@@ -118,12 +118,16 @@ def add_stac_item(repo: S3Repository, acquisition_key: str):
             )
 
             # Get sample product and extract geometry
-            product_sample_key = repo.get_smallest_product_key(
-                bucket=S3_BUCKET,
-                products_prefix=acquisition_key
-            )
-            product_sample_href = f"{S3_HREF}/{product_sample_key}"
-            geometry, crs = get_geometry_from_cog(product_sample_href)
+            try:
+                product_sample_key = repo.get_smallest_product_key(
+                    bucket=S3_BUCKET,
+                    products_prefix=acquisition_key
+                )
+                product_sample_href = f"{S3_HREF}/{product_sample_key}"
+                geometry, crs = get_geometry_from_cog(product_sample_href)
+            except NoObjectError:
+                logger.error(f"No bands found on {acquisition_key} acquisition.")
+                raise
 
             item = SacItem(
                 id=Path(acquisition_key).stem,
@@ -197,6 +201,11 @@ def add_stac_item(repo: S3Repository, acquisition_key: str):
     except TypeError:
         logger.error(f"Invalid collection in {collection_key}, "
                      f"could not add {acquisition_key}.")
+        return 'item', None
     except KeyError:
-        logger.info(f"No collection found in {collection_key},"
-                    f"could not add {acquisition_key}.")
+        logger.error(f"No collection found in {collection_key},"
+                     f"could not add {acquisition_key}.")
+        return 'item', None
+    except NoObjectError as e:
+        logger.error(f"Could not find object in S3: {e}")
+        return 'item', None

@@ -51,6 +51,9 @@ class S3:
         else:
             objects = list(self.s3_resource.Bucket(bucket_name).objects.all().limit(limit))
 
+        if not objects:
+            raise NoObjectError(f'Nothing found with {prefix}*{suffix} in {bucket_name} bucket')
+
         if suffix:
             return [obj for obj in objects if obj.key.endswith(suffix)]
         else:

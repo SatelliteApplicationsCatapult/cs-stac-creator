@@ -24,10 +24,13 @@ class S3Repository:
         return [p.key for p in product_objs]
 
     def get_smallest_product_key(self, bucket: str, products_prefix: str) -> str:
-        product_objs = self.s3.list_objects(bucket_name=bucket, prefix=products_prefix, suffix='.tif')
-        product_objs_size = {p.size: p.key for p in product_objs if p.size > 1}
-        product_min_size = min(list(product_objs_size.keys()))
-        return product_objs_size.get(product_min_size)
+        try:
+            product_objs = self.s3.list_objects(bucket_name=bucket, prefix=products_prefix, suffix='.tif')
+            product_objs_size = {p.size: p.key for p in product_objs if p.size > 1}
+            product_min_size = min(list(product_objs_size.keys()))
+            return product_objs_size.get(product_min_size)
+        except NoObjectError:
+            raise
 
     def get_product_raster(self, bucket: str, product_key: str) -> bytes:
         return self.s3.get_object_body(bucket_name=bucket, object_name=product_key)
