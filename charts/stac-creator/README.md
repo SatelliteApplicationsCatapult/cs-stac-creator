@@ -2,7 +2,7 @@ stac-creator
 ============
 A Helm chart for Kubernetes
 
-Current chart version is `0.1.1`
+Current chart version is `0.1.2`
 
 Source code can be found [here](https://github.com/SatelliteApplicationsCatapult/cs-stac-creator)
 
