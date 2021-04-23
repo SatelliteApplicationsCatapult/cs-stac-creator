@@ -71,7 +71,7 @@ class S3:
             return obj.get('Body').read()
         except ClientError as ex:
             if ex.response['Error']['Code'] == 'NoSuchKey':
-                raise NoObjectError
+                raise NoObjectError(f'Nothing found with {object_name} in {bucket_name} bucket')
 
     def put_object(self, bucket_name, key, body):
         try:
