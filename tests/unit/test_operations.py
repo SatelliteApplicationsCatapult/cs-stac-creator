@@ -2,6 +2,7 @@ import os
 
 from shapely.geometry import Polygon
 from datetime import datetime
+from rasterio.crs import CRS
 
 from sac_stac.domain.operations import obtain_date_from_filename, \
     get_geometry_from_cog, get_projection_from_cog
@@ -126,3 +127,8 @@ def test_get_projection_from_cog_from_tests():
 
     finally:
         os.environ.pop("TEST_ENV")
+
+
+def test_fiji_crs():
+    fiji_crs = CRS.from_epsg(3460)
+    assert fiji_crs.is_valid
