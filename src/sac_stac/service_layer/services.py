@@ -20,6 +20,7 @@ S3_BUCKET = get_s3_configuration()["bucket"]
 S3_STAC_KEY = get_s3_configuration()["stac_key"]
 S3_CATALOG_KEY = f"{S3_STAC_KEY}/catalog.json"
 S3_HREF = f"{S3_ENDPOINT}/{S3_BUCKET}"
+FIJI_EPSG = 3460
 
 
 def add_stac_collection(repo: S3Repository, sensor_key: str):
@@ -132,14 +133,14 @@ def add_stac_item(repo: S3Repository, acquisition_key: str):
             item = SacItem(
                 id=Path(acquisition_key).stem,
                 datetime=date,
-                geometry=json.loads(GeoSeries([geometry], crs=crs).to_crs(4326).to_json()).get('features')[0].get(
+                geometry=json.loads(GeoSeries([geometry], crs=crs).to_crs(FIJI_EPSG).to_json()).get('features')[0].get(
                     'geometry'),
                 bbox=list(geometry.bounds),
                 properties={}
             )
 
             item.ext.enable('projection')
-            item.ext.projection.epsg = crs.to_epsg()
+            item.ext.projection.epsg = FIJI_EPSG
 
             item.add_extensions(sensor_conf.get('extensions'))
             item.add_common_metadata(sensor_conf.get('common_metadata'))
