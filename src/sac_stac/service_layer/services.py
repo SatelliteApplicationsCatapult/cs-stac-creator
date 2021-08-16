@@ -5,7 +5,6 @@ from pathlib import Path
 from geopandas import GeoSeries
 from pystac import Catalog, Extent, SpatialExtent, TemporalExtent, Asset, MediaType, STAC_IO
 from pystac.extensions.eo import Band
-from rasterio.crs import CRS
 
 from sac_stac.adapters.repository import S3Repository, NoObjectError
 from sac_stac.domain.model import SacCollection, SacItem
@@ -141,7 +140,7 @@ def add_stac_item(repo: S3Repository, acquisition_key: str):
             )
 
             item.ext.enable('projection')
-            item.ext.projection.epsg = CRS.from_epsg(FIJI_EPSG)
+            item.ext.projection.epsg = FIJI_EPSG
 
             item.add_extensions(sensor_conf.get('extensions'))
             item.add_common_metadata(sensor_conf.get('common_metadata'))
