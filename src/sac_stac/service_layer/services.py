@@ -68,6 +68,7 @@ def add_stac_collection(repo: S3Repository, sensor_key: str, update_collection_o
             product_definition=sensor_conf.get('extensions').get('product_definition'),
             bands_metadata=sensor_conf.get('extensions').get('eo').get('bands')
         )
+        collection.add_extensions()
 
         catalog.add_child(collection)
         catalog.normalize_hrefs(f"{S3_HREF}/{S3_STAC_KEY}")

@@ -1,4 +1,4 @@
-from pystac import Collection, Item, Provider, STAC_EXTENSIONS
+from pystac import Collection, Item, Provider, STAC_EXTENSIONS, Extensions
 
 from sac_stac.domain.extensions import register_product_definition_extension, register_odc_extension
 
@@ -22,6 +22,12 @@ class SacCollection(Collection):
         a = [{'name': v for k, v in d.items() if k == 'common_name'} for d in bands_metadata]
         b = [{k: v for k, v in d.items() if k != 'common_name' and k != 'name'} for d in bands_metadata]
         self.ext.product_definition.measurements = [x | y for x, y in zip(a, b)]
+
+    def add_extensions(self):
+        self.ext.enable('eo')
+        if not STAC_EXTENSIONS.is_registered_extension('odc'):
+            register_odc_extension()
+        self.ext.enable('odc')
 
 
 class SacItem(Item):
