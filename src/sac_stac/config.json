@@ -2262,6 +2262,66 @@
           "region_code" : ""
         }
       }
+    },
+    {
+      "id": "uk_novasar_scansar_20m",
+      "title": "NovaSAR 20m ScanSAR Datasets-UK",
+      "description": "A collection of NovaSAR ScanSAR (20m) datasets. Gamma0 Backscatter products downloaded via Sedas, processed and prepared by Catapult.",
+      "s3_url": "https://s3-uk-1.sa-catapult.co.uk/public-eo-data/novasar_uk_test/uk_novasar_scansar_20m/",
+      "formatting": {
+        "date": {
+          "regex": "(\\d{6})",
+          "format": "%y%m%d"
+        }
+      },
+      "providers": [
+        {
+          "name": "SSTL",
+          "roles": [
+            "producer",
+            "licensor"
+          ],
+          "url": "https://www.sstl.co.uk/space-portfolio/launched-missions/2010-2019/novasar-1-launched-2018"
+        },
+        {
+          "name": "Satellite Applications Catapult",
+          "roles": [
+            "processor",
+            "host"
+          ],
+          "url": "https://sa.catapult.org.uk/"
+        }
+      ],
+      "common_metadata": {
+        "gsd": 20,
+        "instruments": [
+          "s-sar"
+        ],
+        "constellation": "novasar_1",
+        "platform": "novasar_1"
+      },
+      "extensions": {
+        "cloud_cover": 0.0,
+        "eo": {
+          "bands": [
+            {
+              "name": "Gamma0_Intensity_HH_db",
+              "common_name": "gamma0_HH",
+              "units": "1",
+              "dtype": "float16",
+              "nodata": 0
+            }
+          ]
+        },
+        "product_definition": {
+          "metadata_type": "eo3",
+          "metadata": {
+            "product": {
+              "name": "uk_novasar_scansar_20m"
+            }
+          }
+        }
+      }
     }
   ]
 }

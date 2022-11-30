@@ -51,6 +51,14 @@ def test_obtain_date_from_filename_landsat():
     assert date == datetime(2020, 6, 22, 0, 0, 0)
 
 
+def test_obtain_date_from_filename_novasar():
+    date = obtain_date_from_filename(
+        file='http://s3-uk-1.sa-catapult.co.uk/public-eo-data/novasar_uk_test/uk_novasar_scansar_20m/NovaSAR_01_13145_slc_11_200720_233448_HH_8_ML_TC_TF_cog.tif',
+        regex=r'(\d{6})',
+        date_format='%y%m%d')
+    assert date == datetime(2020, 7, 20, 0, 0, 0)
+
+
 def test_get_geometry_from_cog():
 
     file = 'tests/data/common_sensing/fiji/sentinel_2/S2A_MSIL2A_20151022T222102_T01KBU/' \
