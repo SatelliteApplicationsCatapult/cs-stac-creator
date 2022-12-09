@@ -279,22 +279,15 @@
               "nodata": 0
             },
             {
-              "name": "pixel_qa",
+              "name": "(pixel_qa|qa_pixel)",
               "common_name": "pixel_qa",
               "units": "1",
               "dtype": "uint16",
               "nodata": 1
             },
             {
-              "name": "radsat_qa",
+              "name": "(radsat_qa|qa_radsat)",
               "common_name": "radsat_qa",
-              "units": "1",
-              "dtype": "uint16",
-              "nodata": 0
-            },
-            {
-              "name": "(t2|t1|sr|bt)_aerosol",
-              "common_name": "aerosol",
               "units": "1",
               "dtype": "uint16",
               "nodata": 0
